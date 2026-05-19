@@ -7,10 +7,12 @@ namespace Nexo_App.DAL
 {
     public class ViagemDAL
     {
-        // Lista viagens disponíveis com contagem de assentos livres
-        public List<Viagem> ListarDisponiveis()
+        // Lista viagens aplicando filtros opcionais e conferindo o horário da aplicação
+        public List<Viagem> ListarDisponiveis(string origem = null, string destino = null, DateTime? data = null)
         {
             var lista = new List<Viagem>();
+
+            // Query base com os Joins necessários
             string sql = @"
                 SELECT
                     v.cd_viagem,
@@ -20,31 +22,58 @@ namespace Nexo_App.DAL
                     v.vl_preco,
                     COUNT(a.cd_assento) AS qt_livres
                 FROM Viagem v
-                    LEFT JOIN Assento a ON a.cd_viagem = v.cd_viagem
-                                       AND a.ic_status = 'LIVRE'
-                WHERE v.dt_viagem > GETDATE()
-                GROUP BY v.cd_viagem, v.nm_origem, v.nm_destino, v.dt_viagem, v.vl_preco
-                HAVING COUNT(a.cd_assento) > 0
-                ORDER BY v.dt_viagem";
+                    LEFT JOIN Assento a ON a.cd_viagem = v.cd_viagem AND a.ic_status = 'LIVRE'
+                WHERE v.dt_viagem > @dt_atual ";
+
+            // Concatenação dinâmica de filtros textuais ou de data
+            if (!string.IsNullOrWhiteSpace(origem))
+                sql += " AND v.nm_origem = @origem ";
+
+            if (!string.IsNullOrWhiteSpace(destino))
+                sql += " AND v.nm_destino = @destino ";
+
+            if (data.HasValue)
+                sql += " AND CAST(v.dt_viagem AS DATE) = CAST(@data AS DATE) ";
+
+            sql += @" GROUP BY v.cd_viagem, v.nm_origem, v.nm_destino, v.dt_viagem, v.vl_preco
+                      HAVING COUNT(a.cd_assento) > 0
+                      ORDER BY v.dt_viagem";
 
             using (var con = Conexao.Abrir())
             using (var cmd = new SqlCommand(sql, con))
-            using (var r = cmd.ExecuteReader())
             {
-                while (r.Read())
-                    lista.Add(new Viagem
+                // Parâmetro base temporal seguro
+                cmd.Parameters.AddWithValue("@dt_atual", DateTime.Now);
+
+                if (!string.IsNullOrWhiteSpace(origem))
+                    cmd.Parameters.AddWithValue("@origem", origem);
+
+                if (!string.IsNullOrWhiteSpace(destino))
+                    cmd.Parameters.AddWithValue("@destino", destino);
+
+                if (data.HasValue)
+                    cmd.Parameters.AddWithValue("@data", data.Value);
+
+                using (var r = cmd.ExecuteReader())
+                {
+                    while (r.Read())
                     {
-                        CdViagem  = (int)     r["cd_viagem"],
-                        NmOrigem  = (string)  r["nm_origem"],
-                        NmDestino = (string)  r["nm_destino"],
-                        DtViagem  = (DateTime)r["dt_viagem"],
-                        VlPreco   = (decimal) r["vl_preco"],
-                        QtLivres  = (int)     r["qt_livres"]
-                    });
+                        lista.Add(new Viagem
+                        {
+                            CdViagem = (int)r["cd_viagem"],
+                            NmOrigem = (string)r["nm_origem"],
+                            NmDestino = (string)r["nm_destino"],
+                            DtViagem = (DateTime)r["dt_viagem"],
+                            VlPreco = (decimal)r["vl_preco"],
+                            QtLivres = (int)r["qt_livres"]
+                        });
+                    }
+                }
             }
             return lista;
         }
 
+        // Mantém o método Inserir inalterado...
         public void Inserir(Viagem v, int qtAssentos)
         {
             string sqlViagem = @"
@@ -57,24 +86,21 @@ namespace Nexo_App.DAL
                 int cdViagem;
                 using (var cmd = new SqlCommand(sqlViagem, con))
                 {
-                    cmd.Parameters.AddWithValue("@nm_origem",  v.NmOrigem);
+                    cmd.Parameters.AddWithValue("@nm_origem", v.NmOrigem);
                     cmd.Parameters.AddWithValue("@nm_destino", v.NmDestino);
-                    cmd.Parameters.AddWithValue("@dt_viagem",  v.DtViagem);
-                    cmd.Parameters.AddWithValue("@vl_preco",   v.VlPreco);
+                    cmd.Parameters.AddWithValue("@dt_viagem", v.DtViagem);
+                    cmd.Parameters.AddWithValue("@vl_preco", v.VlPreco);
                     cdViagem = (int)cmd.ExecuteScalar();
                 }
 
-                // Cria os assentos automaticamente
                 string sqlAssento = "INSERT INTO Assento (qt_numero, cd_viagem) VALUES (@num, @cd_viagem)";
                 using (var cmdAssento = new SqlCommand(sqlAssento, con))
                 {
-                    // Criamos os parâmetros uma única vez fora do loop
                     cmdAssento.Parameters.Add("@num", System.Data.SqlDbType.Int);
                     cmdAssento.Parameters.AddWithValue("@cd_viagem", cdViagem);
 
                     for (int i = 1; i <= qtAssentos; i++)
                     {
-                        // Atualizamos apenas o valor do parâmetro que muda
                         cmdAssento.Parameters["@num"].Value = i;
                         cmdAssento.ExecuteNonQuery();
                     }
@@ -103,10 +129,10 @@ namespace Nexo_App.DAL
                     while (r.Read())
                         lista.Add(new Assento
                         {
-                            CdAssento = (int)    r["cd_assento"],
-                            QtNumero  = (int)    r["qt_numero"],
-                            CdViagem  = (int)    r["cd_viagem"],
-                            IcStatus  = (string) r["ic_status"]
+                            CdAssento = (int)r["cd_assento"],
+                            QtNumero = (int)r["qt_numero"],
+                            CdViagem = (int)r["cd_viagem"],
+                            IcStatus = (string)r["ic_status"]
                         });
             }
             return lista;

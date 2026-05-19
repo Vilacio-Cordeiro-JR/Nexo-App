@@ -189,14 +189,14 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(79, 195);
+            this.label6.Location = new System.Drawing.Point(50, 190); // Ajuste a posição X e Y para centralizar melhor
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(266, 16);
-            this.label6.TabIndex = 2;
+            this.label6.Size = new System.Drawing.Size(320, 16); // Dando tamanho suficiente para o texto respirar
             this.label6.Text = "⚠️ O pagamento será registrado no sistema";
-            // 
+            this.label6.TabIndex = 2;
+            //             
             // btnConfirmar
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.Green;
@@ -239,6 +239,7 @@
             this.Name = "FormConfirmacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormConfirmacao";
+            this.Load += new System.EventHandler(this.FormConfirmacao_Load);
             this.panelResumo.ResumeLayout(false);
             this.panelResumo.PerformLayout();
             this.ResumeLayout(false);

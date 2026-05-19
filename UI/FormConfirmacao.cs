@@ -14,23 +14,41 @@ namespace Nexo_App.UI
 
         private void FormConfirmacao_Load(object sender, EventArgs e)
         {
-            // Preenche o resumo com os dados reais da sessão
-            if (Sessao.ViagemSelecionada != null)
+            // Validação de segurança defensiva: evita que o app quebre se a sessão sumir
+            if (Sessao.ViagemSelecionada == null || Sessao.AssentosSelecionados == null)
             {
-                lblOrigem.Text  = Sessao.ViagemSelecionada.NmOrigem;
-                lblDestino.Text = Sessao.ViagemSelecionada.NmDestino;
-                lblData.Text    = Sessao.ViagemSelecionada.DtViagem.ToString("dd/MM/yyyy HH:mm");
+                MessageBox.Show("Dados da sessão não encontrados. Você será redirecionado para a tela inicial.",
+                                "Erro de Sessão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                VoltarParaHome();
+                return;
+            }
+
+            // 1. Preenche os dados textuais da viagem
+            lblOrigem.Text = Sessao.ViagemSelecionada.NmOrigem;
+            lblDestino.Text = Sessao.ViagemSelecionada.NmDestino;
+            lblData.Text = Sessao.ViagemSelecionada.DtViagem.ToString("dd/MM/yyyy HH:mm");
+
+            // 2. Mapeia e junta os assentos escolhidos dinamicamente
+            if (Sessao.AssentosSelecionados.Count == 0)
+            {
+                lblAssentos.Text = "Nenhum assento selecionado";
+                lblTotal.Text = "R$ 0,00";
+                btnConfirmar.Enabled = false; // Bloqueia o botão se não houver o que pagar
+                return;
             }
 
             var nums = new List<string>();
             foreach (var a in Sessao.AssentosSelecionados)
+            {
                 nums.Add(a.QtNumero.ToString());
-
+            }
             lblAssentos.Text = string.Join(", ", nums);
 
-            // Calcula o total
+            // 3. CALCULO DINÂMICO DO PREÇO
             decimal total = Sessao.ViagemSelecionada.VlPreco * Sessao.AssentosSelecionados.Count;
-            lblTotal.Text = "R$ " + total.ToString("F2");
+
+            // O formato "C2" coloca automaticamente o símbolo da moeda local (R$) e formata as casas decimais corretamente
+            lblTotal.Text = total.ToString("C2");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -47,12 +65,7 @@ namespace Nexo_App.UI
                 MessageBox.Show("Reserva confirmada com sucesso!\nObrigado por escolher nosso sistema.",
                     "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpa seleção e volta pra home
-                Sessao.AssentosSelecionados.Clear();
-                Sessao.ViagemSelecionada = null;
-
-                new FormHome().Show();
-                this.Close();
+                VoltarParaHome();
             }
             catch (Exception ex)
             {
@@ -63,8 +76,20 @@ namespace Nexo_App.UI
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            new FormAssentos().Show();
-            this.Close();
+            var formAssentos = new FormAssentos();
+            formAssentos.Show();
+            this.Dispose(); // Libera os recursos da tela atual da memória de forma limpa
+        }
+
+        private void VoltarParaHome()
+        {
+            // Limpa a seleção da sessão antes de sair
+            if (Sessao.AssentosSelecionados != null) Sessao.AssentosSelecionados.Clear();
+            Sessao.ViagemSelecionada = null;
+
+            var formHome = new FormHome();
+            formHome.Show();
+            this.Dispose();
         }
     }
 }

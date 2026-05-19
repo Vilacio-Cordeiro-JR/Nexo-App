@@ -3,20 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formassentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formassentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Tentativa2.csproj|C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\ui\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Tentativa2.csproj|solutionrelative:ui\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formassentos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formassentos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formloginadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formloginadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formassentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formassentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\bll\\bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:bll\\bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formconfirmacao.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formconfirmacao.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formconfirmacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formconfirmacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formconfirmacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formconfirmacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\roundedtextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\roundedtextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\roundedtextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\roundedtextbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\ui\\formhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:ui\\formhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|c:\\users\\windows10\\onedrive\\\u00E1rea de trabalho\\trabalho_app-desk_bd\\nexo_app\\dal\\viagemassentodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{013F99BB-A029-4AE0-8F0A-810311B1887E}|Nexo-App.csproj|solutionrelative:dal\\viagemassentodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,50 +59,142 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormLogin.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormLogin.cs",
-              "RelativeDocumentMoniker": "UI\\FormLogin.cs",
-              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormLogin.cs [Design]",
-              "RelativeToolTip": "UI\\FormLogin.cs [Design]",
+              "Title": "FormAssentos.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAssentos.cs",
+              "RelativeDocumentMoniker": "UI\\FormAssentos.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAssentos.cs",
+              "RelativeToolTip": "UI\\FormAssentos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T00:02:29.459Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormLoginAdmin.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormLoginAdmin.cs",
-              "RelativeDocumentMoniker": "UI\\FormLoginAdmin.cs",
-              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormLoginAdmin.cs [Design]",
-              "RelativeToolTip": "UI\\FormLoginAdmin.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T00:01:51.14Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormAdmin.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAdmin.cs",
-              "RelativeDocumentMoniker": "UI\\FormAdmin.cs",
-              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAdmin.cs [Design]",
-              "RelativeToolTip": "UI\\FormAdmin.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T00:01:04.099Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-19T17:16:33.991Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormLogin.cs",
-              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormLogin.cs",
-              "RelativeDocumentMoniker": "UI\\FormLogin.cs",
-              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormLogin.cs",
-              "RelativeToolTip": "UI\\FormLogin.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Title": "FormAssentos.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAssentos.Designer.cs",
+              "RelativeDocumentMoniker": "UI\\FormAssentos.Designer.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAssentos.Designer.cs",
+              "RelativeToolTip": "UI\\FormAssentos.Designer.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAgwLYAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-18T21:58:07.637Z"
+              "WhenOpened": "2026-05-19T17:16:18.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormAssentos.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAssentos.cs",
+              "RelativeDocumentMoniker": "UI\\FormAssentos.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormAssentos.cs [Design]",
+              "RelativeToolTip": "UI\\FormAssentos.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T17:16:00.927Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormConfirmacao.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormConfirmacao.Designer.cs",
+              "RelativeDocumentMoniker": "UI\\FormConfirmacao.Designer.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormConfirmacao.Designer.cs",
+              "RelativeToolTip": "UI\\FormConfirmacao.Designer.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAApwMUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T17:03:25.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FormConfirmacao.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormConfirmacao.cs",
+              "RelativeDocumentMoniker": "UI\\FormConfirmacao.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormConfirmacao.cs [Design]",
+              "RelativeToolTip": "UI\\FormConfirmacao.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T17:03:12.741Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RoundedTextBox.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\RoundedTextBox.cs",
+              "RelativeDocumentMoniker": "UI\\RoundedTextBox.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\RoundedTextBox.cs",
+              "RelativeToolTip": "UI\\RoundedTextBox.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T17:02:54.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BLL.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\BLL\\BLL.cs",
+              "RelativeDocumentMoniker": "BLL\\BLL.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\BLL\\BLL.cs",
+              "RelativeToolTip": "BLL\\BLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAIwH8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T16:57:56.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormConfirmacao.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormConfirmacao.cs",
+              "RelativeDocumentMoniker": "UI\\FormConfirmacao.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormConfirmacao.cs",
+              "RelativeToolTip": "UI\\FormConfirmacao.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwBQAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T17:03:20.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RoundedTextBox.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\RoundedTextBox.cs",
+              "RelativeDocumentMoniker": "UI\\RoundedTextBox.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\RoundedTextBox.cs [Design]",
+              "RelativeToolTip": "UI\\RoundedTextBox.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T17:02:49.869Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FormHome.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormHome.cs",
+              "RelativeDocumentMoniker": "UI\\FormHome.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\UI\\FormHome.cs",
+              "RelativeToolTip": "UI\\FormHome.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAUwH0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T16:59:08.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ViagemAssentoDAL.cs",
+              "DocumentMoniker": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\DAL\\ViagemAssentoDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\ViagemAssentoDAL.cs",
+              "ToolTip": "C:\\Users\\WINDOWS10\\OneDrive\\\u00C1rea de Trabalho\\Trabalho_App-desk_BD\\Nexo_App\\DAL\\ViagemAssentoDAL.cs",
+              "RelativeToolTip": "DAL\\ViagemAssentoDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T16:54:41.398Z",
+              "EditorCaption": ""
             }
           ]
         }

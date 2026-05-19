@@ -11,7 +11,7 @@ namespace Nexo_App.BLL
     public static class Sessao
     {
         public static Usuario UsuarioLogado { get; set; }
-        public static Viagem  ViagemSelecionada { get; set; }
+        public static Viagem ViagemSelecionada { get; set; }
         public static List<Assento> AssentosSelecionados { get; set; } = new List<Assento>();
     }
 
@@ -55,16 +55,16 @@ namespace Nexo_App.BLL
 
             _dal.Inserir(new Usuario
             {
-                NmUsuario  = nome.Trim(),
-                NmEmail    = email.Trim().ToLower(),
+                NmUsuario = nome.Trim(),
+                NmEmail = email.Trim().ToLower(),
                 DsSenhaHash = GerarHash(senha),
                 NmTelefone = telefone.Trim(),
-                CdCep      = cep.Trim(),
-                NmRua      = rua.Trim(),
-                NmBairro   = bairro.Trim(),
-                NmCidade   = cidade.Trim(),
-                SgEstado   = estado.Trim().ToUpper(),
-                IcTipo     = "USER"
+                CdCep = cep.Trim(),
+                NmRua = rua.Trim(),
+                NmBairro = bairro.Trim(),
+                NmCidade = cidade.Trim(),
+                SgEstado = estado.Trim().ToUpper(),
+                IcTipo = "USER"
             });
         }
 
@@ -81,10 +81,21 @@ namespace Nexo_App.BLL
     {
         private readonly ViagemDAL _dal = new ViagemDAL();
 
-        public List<Viagem> ListarDisponiveis() => _dal.ListarDisponiveis();
+        // Repassa filtros para a DAL
+        public List<Viagem> ListarDisponiveis(string origem = null, string destino = null, DateTime? data = null)
+        {
+            // Regra opcional: Se o usuário digitar campos idênticos na busca, barramos antes do banco
+            if (!string.IsNullOrWhiteSpace(origem) && !string.IsNullOrWhiteSpace(destino))
+            {
+                if (origem.Trim().ToLower() == destino.Trim().ToLower())
+                    throw new Exception("Origem e destino não podem ser iguais para a pesquisa.");
+            }
 
-        public void CriarViagem(string origem, string destino, DateTime dataHora,
-                                string precoStr, string qtAssentosStr)
+            return _dal.ListarDisponiveis(origem, destino, data);
+        }
+
+        // Mantém o método CriarViagem exatamente como estava...
+        public void CriarViagem(string origem, string destino, DateTime dataHora, string precoStr, string qtAssentosStr)
         {
             if (string.IsNullOrWhiteSpace(origem) || string.IsNullOrWhiteSpace(destino))
                 throw new Exception("Origem e destino são obrigatórios.");
@@ -103,10 +114,10 @@ namespace Nexo_App.BLL
 
             _dal.Inserir(new Viagem
             {
-                NmOrigem  = origem.Trim(),
+                NmOrigem = origem.Trim(),
                 NmDestino = destino.Trim(),
-                DtViagem  = dataHora,
-                VlPreco   = preco
+                DtViagem = dataHora,
+                VlPreco = preco
             }, qtAssentos);
         }
     }

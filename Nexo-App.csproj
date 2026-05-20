@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo .ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -173,6 +176,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>SistemaPassagens.mdf</DependentUpon>
     </Content>
+<<<<<<< HEAD
     <Content Include="Resources\nexobackground.png" />
     <None Include="Resources\nexopretoebranco5.png" />
     <None Include="Resources\nexobackgrounddd.png" />
@@ -180,6 +184,9 @@
     <None Include="Resources\fundoadm.png" />
     <None Include="Resources\fundologinamd2.png" />
     <None Include="Resources\fundologinamd.png" />
+=======
+    <Content Include="Logo .ico" />
+>>>>>>> 0e6d10aa74f09020ba59d6a465dbb2179382c657
     <None Include="Resources\fundologin.png" />
   </ItemGroup>
   <ItemGroup>

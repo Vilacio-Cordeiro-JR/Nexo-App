@@ -1,6 +1,7 @@
-using System;
-using System.Windows.Forms;
 using Nexo_App.BLL;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Nexo_App.UI
 {
@@ -9,6 +10,12 @@ namespace Nexo_App.UI
         public FormAdmin()
         {
             InitializeComponent();
+            panelData.BackColor = Color.White;
+            panelData.Invalidate();
+            AplicarBordaArredondada(panelData, 20);
+            dateTimePicker1.CalendarForeColor = Color.Black;
+            AplicarBordaArredondada(btnCriarViagem, 30);
+            AplicarBordaArredondada(btnAtualizar, 30);
         }
 
         private void btnCriarViagem_Click(object sender, EventArgs e)
@@ -28,14 +35,14 @@ namespace Nexo_App.UI
                 MessageBox.Show("Viagem criada com sucesso!", "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                txtOrigem.Clear();
-                txtDestino.Clear();
-                txtPreco.Clear();
+                txtOrigem.Text = "";
+                txtDestino.Text = "";
+                txtPreco.Text = "";
                 txtAssentos.Text = "40";
             }
             catch (Exception ex)
             {
-                lblErroAdmin.Text    = ex.Message;
+                lblErroAdmin.Text = ex.Message;
                 lblErroAdmin.Visible = true;
             }
         }
@@ -45,7 +52,7 @@ namespace Nexo_App.UI
             try
             {
                 dgvReservas.Rows.Clear();
-                var bll      = new ReservaBLL();
+                var bll = new ReservaBLL();
                 var reservas = bll.ListarTodas();
 
                 foreach (var r in reservas)
@@ -71,5 +78,61 @@ namespace Nexo_App.UI
             new FormLogin().Show();
             this.Close();
         }
+
+
+
+        private void AplicarBordaArredondada(Control ctrl, int raio)
+        {
+            ctrl.Paint += (sender, e) =>
+            {
+                Rectangle rect = new Rectangle(0, 0, ctrl.Width - 1, ctrl.Height - 1);
+
+                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+                path.AddArc(rect.X, rect.Y, raio, raio, 180, 90);
+                path.AddArc(rect.Right - raio, rect.Y, raio, raio, 270, 90);
+                path.AddArc(rect.Right - raio, rect.Bottom - raio, raio, raio, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - raio, raio, raio, 90, 90);
+                path.CloseFigure();
+
+                ctrl.Region = new Region(path);
+
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                using (Pen pen = new Pen(Color.Black, 2))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            };
+        }
+
+        private void FormAdmin_Load(object sender, EventArgs e)
+        {
+            AplicarBordaArredondada(panelData, 20);
+
+
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
+
+            // empurra um pouco para direita
+            dateTimePicker1.Location = new Point(-1, -1);
+
+            // aumenta para esconder bordas
+            dateTimePicker1.Width = panelData.Width + 6;
+            dateTimePicker1.Height = panelData.Height + 6;
+
+        }
+
+        private void AplicarBordaArredondada(Button btn, int raio)
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(0, 0, raio, raio, 180, 90);
+            path.AddArc(btn.Width - raio, 0, raio, raio, 270, 90);
+            path.AddArc(btn.Width - raio, btn.Height - raio, raio, raio, 0, 90);
+            path.AddArc(0, btn.Height - raio, raio, raio, 90, 90);
+            path.CloseAllFigures();
+            btn.Region = new Region(path);
+        }
+
+        
     }
 }

@@ -63,6 +63,46 @@ namespace Nexo_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backbranconexo2 {
+            get {
+                object obj = ResourceManager.GetObject("backbranconexo2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backbranconexo3 {
+            get {
+                object obj = ResourceManager.GetObject("backbranconexo3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backbranconexo6 {
+            get {
+                object obj = ResourceManager.GetObject("backbranconexo6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backbranconexo7 {
+            get {
+                object obj = ResourceManager.GetObject("backbranconexo7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bh_rj {
             get {
                 object obj = ResourceManager.GetObject("bh_rj", resourceCulture);
@@ -133,9 +173,49 @@ namespace Nexo_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nexopretoebranco10 {
+            get {
+                object obj = ResourceManager.GetObject("nexopretoebranco10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nexopretoebranco11 {
+            get {
+                object obj = ResourceManager.GetObject("nexopretoebranco11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nexopretoebranco5 {
             get {
                 object obj = ResourceManager.GetObject("nexopretoebranco5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nexopretoebranco6 {
+            get {
+                object obj = ResourceManager.GetObject("nexopretoebranco6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nexopretoebranco7 {
+            get {
+                object obj = ResourceManager.GetObject("nexopretoebranco7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

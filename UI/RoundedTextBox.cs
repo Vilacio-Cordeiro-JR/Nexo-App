@@ -59,11 +59,16 @@ namespace Nexo_App.UI
             Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
             GraphicsPath path = GetRoundedRect(rect, borderRadius);
 
+            // Desenha o fundo branco (MANTENHA)
             using (SolidBrush brush = new SolidBrush(Color.White))
                 g.FillPath(brush, path);
 
-            using (Pen pen = new Pen(borderColor, 1.5f))
-                g.DrawPath(pen, path);
+            // SÓ desenha a borda se o interruptor estiver ligado
+            if (MostrarBorda)
+            {
+                using (Pen pen = new Pen(borderColor, 1.5f))
+                    g.DrawPath(pen, path);
+            }
         }
 
         private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
@@ -76,5 +81,20 @@ namespace Nexo_App.UI
             path.CloseFigure();
             return path;
         }
+
+        private bool mostrarBorda = true; // Por padrão, a borda continuará aparecendo nas outras telas
+
+        public bool MostrarBorda
+        {
+            get { return mostrarBorda; }
+            set
+            {
+                mostrarBorda = value;
+                this.Invalidate(); // Força a caixinha a ser redesenhada quando você altera o valor
+            }
+        }
+
+
+
     }
 }

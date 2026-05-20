@@ -63,6 +63,16 @@ namespace Nexo_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bh_rj {
+            get {
+                object obj = ResourceManager.GetObject("bh_rj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fundoadm {
             get {
                 object obj = ResourceManager.GetObject("fundoadm", resourceCulture);
@@ -126,6 +136,56 @@ namespace Nexo_App.Properties {
         internal static System.Drawing.Bitmap nexopretoebranco5 {
             get {
                 object obj = ResourceManager.GetObject("nexopretoebranco5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sp_bertioga {
+            get {
+                object obj = ResourceManager.GetObject("sp_bertioga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sp_curitiba {
+            get {
+                object obj = ResourceManager.GetObject("sp_curitiba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sp_rj {
+            get {
+                object obj = ResourceManager.GetObject("sp_rj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sp_santos {
+            get {
+                object obj = ResourceManager.GetObject("sp_santos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sp_ubatuba {
+            get {
+                object obj = ResourceManager.GetObject("sp_ubatuba", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

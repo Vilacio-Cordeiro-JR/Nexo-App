@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bh_rj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bh.rj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="fundoadm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fundoadm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,5 +141,20 @@
   </data>
   <data name="nexopretoebranco5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nexopretoebranco5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sp_bertioga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sp.bertioga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sp_curitiba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sp.curitiba.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sp_rj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sp.rj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sp_santos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sp.santos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sp_ubatuba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sp.ubatuba.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

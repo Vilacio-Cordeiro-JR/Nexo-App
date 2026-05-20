@@ -176,7 +176,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>SistemaPassagens.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\sp.curitiba.png" />
+    <None Include="Resources\sp.ubatuba.png" />
+    <None Include="Resources\sp.rj.png" />
+    <None Include="Resources\bh.rj.png" />
     <Content Include="Resources\nexobackground.png" />
+    <None Include="Resources\sp.santos.png" />
+    <None Include="Resources\sp.bertioga.png" />
     <None Include="Resources\nexopretoebranco5.png" />
     <None Include="Resources\nexobackgrounddd.png" />
     <None Include="Resources\fundoadmin.png" />

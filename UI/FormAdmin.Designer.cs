@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdmin));
             this.panelTopo = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSair = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtOrigem = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDestino = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPreco = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtAssentos = new System.Windows.Forms.TextBox();
-            this.lblErroAdmin = new System.Windows.Forms.Label();
             this.btnCriarViagem = new System.Windows.Forms.Button();
+            this.lblErroAdmin = new System.Windows.Forms.Label();
+            this.txtAssentos = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPreco = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDestino = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtOrigem = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnAtualizar = new System.Windows.Forms.Button();
             this.dgvReservas = new System.Windows.Forms.DataGridView();
             this.colIdReserva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPassageiro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +55,6 @@
             this.colDestino = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAssentos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAtualizar = new System.Windows.Forms.Button();
             this.panelTopo.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -71,17 +72,6 @@
             this.panelTopo.Size = new System.Drawing.Size(834, 70);
             this.panelTopo.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(298, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "🔧 Painel Administrativo";
-            // 
             // btnSair
             // 
             this.btnSair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -95,6 +85,17 @@
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(298, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "🔧 Painel Administrativo";
             // 
             // tabControl
             // 
@@ -128,118 +129,6 @@
             this.tabPage1.Text = "Criar Viagem";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.btnAtualizar);
-            this.tabPage2.Controls.Add(this.dgvReservas);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(802, 444);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Ver Reservas";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(204, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 16);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Origem:";
-            // 
-            // txtOrigem
-            // 
-            this.txtOrigem.Location = new System.Drawing.Point(306, 51);
-            this.txtOrigem.Name = "txtOrigem";
-            this.txtOrigem.Size = new System.Drawing.Size(300, 20);
-            this.txtOrigem.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(204, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Destino:";
-            // 
-            // txtDestino
-            // 
-            this.txtDestino.Location = new System.Drawing.Point(306, 98);
-            this.txtDestino.Name = "txtDestino";
-            this.txtDestino.Size = new System.Drawing.Size(300, 20);
-            this.txtDestino.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(204, 150);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 16);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Data e Hora:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(306, 146);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(300, 20);
-            this.dateTimePicker1.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(204, 197);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 16);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Preço (R$):";
-            // 
-            // txtPreco
-            // 
-            this.txtPreco.Location = new System.Drawing.Point(306, 196);
-            this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(300, 20);
-            this.txtPreco.TabIndex = 7;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(204, 236);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(164, 16);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Quantidade de Assentos:";
-            // 
-            // txtAssentos
-            // 
-            this.txtAssentos.Location = new System.Drawing.Point(396, 235);
-            this.txtAssentos.Name = "txtAssentos";
-            this.txtAssentos.Size = new System.Drawing.Size(210, 20);
-            this.txtAssentos.TabIndex = 9;
-            this.txtAssentos.Text = "40";
-            // 
-            // lblErroAdmin
-            // 
-            this.lblErroAdmin.AutoSize = true;
-            this.lblErroAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErroAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblErroAdmin.Location = new System.Drawing.Point(303, 425);
-            this.lblErroAdmin.Name = "lblErroAdmin";
-            this.lblErroAdmin.Size = new System.Drawing.Size(200, 16);
-            this.lblErroAdmin.TabIndex = 10;
-            this.lblErroAdmin.Text = "Preencha todos os campos!";
-            this.lblErroAdmin.Visible = false;
-            // 
             // btnCriarViagem
             // 
             this.btnCriarViagem.BackColor = System.Drawing.Color.Green;
@@ -253,6 +142,132 @@
             this.btnCriarViagem.Text = "✔ Criar Viagem";
             this.btnCriarViagem.UseVisualStyleBackColor = false;
             this.btnCriarViagem.Click += new System.EventHandler(this.btnCriarViagem_Click);
+            // 
+            // lblErroAdmin
+            // 
+            this.lblErroAdmin.AutoSize = true;
+            this.lblErroAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErroAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblErroAdmin.Location = new System.Drawing.Point(303, 425);
+            this.lblErroAdmin.Name = "lblErroAdmin";
+            this.lblErroAdmin.Size = new System.Drawing.Size(200, 16);
+            this.lblErroAdmin.TabIndex = 10;
+            this.lblErroAdmin.Text = "Preencha todos os campos!";
+            this.lblErroAdmin.Visible = false;
+            // 
+            // txtAssentos
+            // 
+            this.txtAssentos.Location = new System.Drawing.Point(396, 235);
+            this.txtAssentos.Name = "txtAssentos";
+            this.txtAssentos.Size = new System.Drawing.Size(210, 20);
+            this.txtAssentos.TabIndex = 9;
+            this.txtAssentos.Text = "40";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(204, 236);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(164, 16);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Quantidade de Assentos:";
+            // 
+            // txtPreco
+            // 
+            this.txtPreco.Location = new System.Drawing.Point(306, 196);
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Size = new System.Drawing.Size(300, 20);
+            this.txtPreco.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(204, 197);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 16);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Preço (R$):";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(306, 146);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(300, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(204, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 16);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Data e Hora:";
+            // 
+            // txtDestino
+            // 
+            this.txtDestino.Location = new System.Drawing.Point(306, 98);
+            this.txtDestino.Name = "txtDestino";
+            this.txtDestino.Size = new System.Drawing.Size(300, 20);
+            this.txtDestino.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(204, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Destino:";
+            // 
+            // txtOrigem
+            // 
+            this.txtOrigem.Location = new System.Drawing.Point(306, 51);
+            this.txtOrigem.Name = "txtOrigem";
+            this.txtOrigem.Size = new System.Drawing.Size(300, 20);
+            this.txtOrigem.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(204, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Origem:";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnAtualizar);
+            this.tabPage2.Controls.Add(this.dgvReservas);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(802, 444);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Ver Reservas";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnAtualizar
+            // 
+            this.btnAtualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAtualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtualizar.ForeColor = System.Drawing.Color.White;
+            this.btnAtualizar.Location = new System.Drawing.Point(344, 358);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(130, 35);
+            this.btnAtualizar.TabIndex = 1;
+            this.btnAtualizar.Text = "🔄 Atualizar";
+            this.btnAtualizar.UseVisualStyleBackColor = false;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // dgvReservas
             // 
@@ -315,20 +330,6 @@
             this.colAssentos.Name = "colAssentos";
             this.colAssentos.ReadOnly = true;
             // 
-            // btnAtualizar
-            // 
-            this.btnAtualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtualizar.ForeColor = System.Drawing.Color.White;
-            this.btnAtualizar.Location = new System.Drawing.Point(344, 358);
-            this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(130, 35);
-            this.btnAtualizar.TabIndex = 1;
-            this.btnAtualizar.Text = "🔄 Atualizar";
-            this.btnAtualizar.UseVisualStyleBackColor = false;
-            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
-            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +339,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panelTopo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

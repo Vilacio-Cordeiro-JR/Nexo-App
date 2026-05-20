@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfirmacao));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panelResumo = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblAssentos = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
@@ -38,9 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblOrigem = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.panelResumo.SuspendLayout();
@@ -75,6 +76,39 @@
             this.panelResumo.Name = "panelResumo";
             this.panelResumo.Size = new System.Drawing.Size(420, 220);
             this.panelResumo.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(50, 190);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(259, 16);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "⚠️ O pagamento será registrado no sistema";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblTotal.Location = new System.Drawing.Point(205, 146);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(66, 16);
+            this.lblTotal.TabIndex = 9;
+            this.lblTotal.Text = "R$ 179,80";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(157, 146);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 16);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Total:";
             // 
             // lblAssentos
             // 
@@ -164,39 +198,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Origem:";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(157, 146);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 16);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Total:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblTotal.Location = new System.Drawing.Point(205, 146);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(66, 16);
-            this.lblTotal.TabIndex = 9;
-            this.lblTotal.Text = "R$ 179,80";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(50, 190); // Ajuste a posição X e Y para centralizar melhor
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(320, 16); // Dando tamanho suficiente para o texto respirar
-            this.label6.Text = "⚠️ O pagamento será registrado no sistema";
-            this.label6.TabIndex = 2;
-            //             
             // btnConfirmar
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.Green;
@@ -235,6 +236,7 @@
             this.Controls.Add(this.panelResumo);
             this.Controls.Add(this.lblTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormConfirmacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

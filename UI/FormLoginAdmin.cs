@@ -1,6 +1,7 @@
-using System;
-using System.Windows.Forms;
 using Nexo_App.BLL;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Nexo_App.UI
 {
@@ -36,9 +37,33 @@ namespace Nexo_App.UI
             }
         }
 
+        
+
+  // ← fechamento da classe
+
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close(); // Apenas fecha esta janela; o FormLogin original reaparecerá sozinho
+        }
+
+
+        private void AplicarBordaArredondada(Button btn, int raio)
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(0, 0, raio, raio, 180, 90);
+            path.AddArc(btn.Width - raio, 0, raio, raio, 270, 90);
+            path.AddArc(btn.Width - raio, btn.Height - raio, raio, raio, 0, 90);
+            path.AddArc(0, btn.Height - raio, raio, raio, 90, 90);
+            path.CloseAllFigures();
+            btn.Region = new Region(path);
+        }
+
+        
+
+        private void FormLoginAdmin_Load_1(object sender, EventArgs e)
+        {
+            AplicarBordaArredondada(btnEntrar, 30);
+            AplicarBordaArredondada(btnVoltar, 30);
         }
     }
 }

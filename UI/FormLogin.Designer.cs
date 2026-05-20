@@ -44,12 +44,12 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Menseal Black", 20F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.Black;
-            this.lblTitulo.Location = new System.Drawing.Point(176, 155);
+            this.lblTitulo.Location = new System.Drawing.Point(141, 154);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(346, 37);
+            this.lblTitulo.Size = new System.Drawing.Size(416, 38);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "SISTEMA DE PASSAGENS";
             // 
@@ -57,12 +57,12 @@
             // 
             this.lblSubtitulo.AutoSize = true;
             this.lblSubtitulo.BackColor = System.Drawing.Color.Transparent;
-            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtitulo.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblSubtitulo.ForeColor = System.Drawing.Color.Black;
-            this.lblSubtitulo.Location = new System.Drawing.Point(168, 192);
+            this.lblSubtitulo.Location = new System.Drawing.Point(183, 192);
             this.lblSubtitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSubtitulo.Name = "lblSubtitulo";
-            this.lblSubtitulo.Size = new System.Drawing.Size(361, 23);
+            this.lblSubtitulo.Size = new System.Drawing.Size(331, 18);
             this.lblSubtitulo.TabIndex = 1;
             this.lblSubtitulo.Text = "RESERVE SUA PASSAGEM COM FACILIDADE";
             // 
@@ -72,9 +72,9 @@
             this.btnEntrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEntrar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntrar.Font = new System.Drawing.Font("Menseal Black", 15F, System.Drawing.FontStyle.Bold);
             this.btnEntrar.ForeColor = System.Drawing.Color.White;
-            this.btnEntrar.Location = new System.Drawing.Point(172, 415);
+            this.btnEntrar.Location = new System.Drawing.Point(172, 442);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(350, 40);
             this.btnEntrar.TabIndex = 6;
@@ -89,12 +89,12 @@
             this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrar.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnCadastrar.FlatAppearance.BorderSize = 0;
-            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCadastrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastrar.Font = new System.Drawing.Font("Menseal", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.ForeColor = System.Drawing.Color.Black;
-            this.btnCadastrar.Location = new System.Drawing.Point(172, 476);
+            this.btnCadastrar.Location = new System.Drawing.Point(220, 501);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(350, 40);
+            this.btnCadastrar.Size = new System.Drawing.Size(249, 29);
             this.btnCadastrar.TabIndex = 7;
             this.btnCadastrar.Text = "Não tem conta? Criar conta";
             this.btnCadastrar.UseVisualStyleBackColor = false;
@@ -119,6 +119,7 @@
             this.btnAcessoAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAcessoAdmin.FlatAppearance.BorderSize = 0;
             this.btnAcessoAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcessoAdmin.Font = new System.Drawing.Font("Menseal Black", 8F, System.Drawing.FontStyle.Bold);
             this.btnAcessoAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.btnAcessoAdmin.Location = new System.Drawing.Point(172, 708);
             this.btnAcessoAdmin.Name = "btnAcessoAdmin";
@@ -132,12 +133,12 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.label3.Location = new System.Drawing.Point(183, 250);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 17);
+            this.label3.Size = new System.Drawing.Size(57, 18);
             this.label3.TabIndex = 12;
             this.label3.Text = "E-mail";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -146,12 +147,12 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.label4.Location = new System.Drawing.Point(183, 306);
+            this.label4.Location = new System.Drawing.Point(183, 333);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.Size = new System.Drawing.Size(55, 18);
             this.label4.TabIndex = 13;
             this.label4.Text = "Senha";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -172,7 +173,7 @@
             // 
             this.roundedTextBox1.BackColor = System.Drawing.Color.Transparent;
             this.roundedTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.roundedTextBox1.Location = new System.Drawing.Point(172, 326);
+            this.roundedTextBox1.Location = new System.Drawing.Point(172, 353);
             this.roundedTextBox1.Name = "roundedTextBox1";
             this.roundedTextBox1.Padding = new System.Windows.Forms.Padding(10);
             this.roundedTextBox1.PasswordChar = '*';

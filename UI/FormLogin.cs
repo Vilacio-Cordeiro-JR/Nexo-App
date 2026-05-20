@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Nexo_App.BLL;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
-using Nexo_App.BLL;
 
 namespace Nexo_App.UI
 {
@@ -11,6 +12,10 @@ namespace Nexo_App.UI
             InitializeComponent();
             // Mata o processo do Windows se fechar no "X" antes de logar
             this.FormClosed += (s, e) => Application.Exit();
+
+            btnCadastrar.FlatStyle = FlatStyle.Flat;
+            btnCadastrar.FlatAppearance.BorderSize = 0;
+            btnCadastrar.UseVisualStyleBackColor = false;
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -51,6 +56,20 @@ namespace Nexo_App.UI
             cadastro.ShowDialog(); // Abre por cima
             this.Show(); // Volta o login quando fechar o cadastro;
         }
+        private void AplicarBordaArredondada(Button btn, int raio)
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(0, 0, raio, raio, 180, 90);
+            path.AddArc(btn.Width - raio, 0, raio, raio, 270, 90);
+            path.AddArc(btn.Width - raio, btn.Height - raio, raio, raio, 0, 90);
+            path.AddArc(0, btn.Height - raio, raio, raio, 90, 90);
+            path.CloseAllFigures();
+            btn.Region = new Region(path);
+        }
+
+    
+
+
 
         private void btnAcessoAdmin_Click(object sender, EventArgs e)
         {
@@ -67,6 +86,13 @@ namespace Nexo_App.UI
             {
                 this.Show(); // Mostra o login comum de volta
             }
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            AplicarBordaArredondada(btnEntrar, 30);
+            AplicarBordaArredondada(btnCadastrar, 30);
+            AplicarBordaArredondada(btnAcessoAdmin, 30);
         }
     }
 }

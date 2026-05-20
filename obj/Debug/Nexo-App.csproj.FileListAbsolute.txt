@@ -18,3 +18,24 @@ C:\Users\WINDOWS10\OneDrive\Área de Trabalho\Trabalho_App-desk_BD\Nexo_App\obj\
 C:\Users\WINDOWS10\OneDrive\Área de Trabalho\Trabalho_App-desk_BD\Nexo_App\obj\Debug\Nexo-App.csproj.CoreCompileInputs.cache
 C:\Users\WINDOWS10\OneDrive\Área de Trabalho\Trabalho_App-desk_BD\Nexo_App\obj\Debug\Nexo-App.exe
 C:\Users\WINDOWS10\OneDrive\Área de Trabalho\Trabalho_App-desk_BD\Nexo_App\obj\Debug\Nexo-App.pdb
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\bin\Debug\SistemaPassagens.mdf
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\bin\Debug\bin\Debug\SistemaPassagens.mdf
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\bin\Debug\bin\Debug\SistemaPassagens_log.ldf
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\bin\Debug\SistemaPassagens_log.ldf
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\Nexo-App.exe.config
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\Nexo-App.exe
+C:\Users\jjoao\Source\Repos\Nexo-App\bin\Debug\Nexo-App.pdb
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo-App.csproj.AssemblyReference.cache
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo-App.exe.config
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.Properties.Resources.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormAdmin.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormAssentos.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormCadastro.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormConfirmacao.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormHome.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormLogin.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo_App.UI.FormLoginAdmin.resources
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo-App.csproj.GenerateResource.cache
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo-App.csproj.CoreCompileInputs.cache
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo-App.exe
+C:\Users\jjoao\Source\Repos\Nexo-App\obj\Debug\Nexo-App.pdb

@@ -173,6 +173,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>SistemaPassagens.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\fundologin.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

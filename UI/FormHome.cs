@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO; // Adicionado para manipulação segura de arquivos locais
 using Nexo_App.BLL;
 using Nexo_App.Models;
 
@@ -9,14 +10,16 @@ namespace Nexo_App.UI
 {
     public partial class FormHome : Form
     {
-
-        private Dictionary<string, string[]> infoViagens = new Dictionary<string, string[]>();
-
         private readonly ViagemBLL _viagemBLL = new ViagemBLL();
 
         public FormHome()
         {
             InitializeComponent();
+
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+
+            // ADICIONE ESTA LINHA: Vincula o clique da imagem ao nosso novo método
+            this.picMapa.Click += new System.EventHandler(this.picMapa_Click);
 
             // Garante o vínculo do clique do botão de busca à lógica
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -33,21 +36,10 @@ namespace Nexo_App.UI
                 if (Sessao.UsuarioLogado != null)
                     lblBemVindo.Text = $"Bem-Vindo, {Sessao.UsuarioLogado.NmUsuario}!";
 
+
+
                 // Inicializa o Grid com todas as viagens futuras disponíveis
                 CarregarGrid(null, null, null);
-
-
-
-                string basePath = Application.StartupPath + "\\Resources\\";
-
-                infoViagens["santos|são paulo"] = new string[] { "1h 30min", basePath + "sp.santos.png" };
-                infoViagens["belo horizonte|rio de janeiro"] = new string[] { "5h 00min", basePath + "bh.rj.png" };
-                infoViagens["são paulo|bertioga"] = new string[] { "2h 15min", basePath + "sp.bertioga.png" };
-                infoViagens["são paulo|rio de janeiro"] = new string[] { "6h 00min", basePath + "sp.rj.png" };
-                infoViagens["são paulo|ubatuba"] = new string[] { "2h 00min", basePath + "sp.ubatuba.png" };
-                infoViagens["são paulo|curitiba"] = new string[] { "5h 30min", basePath + "sp.curitiba.png" };
-                infoViagens["rio de janeiro|são paulo"] = new string[] { "6h 00min", basePath + "sp.rj.png" };
-                infoViagens["curitiba|são paulo"] = new string[] { "5h 30min", basePath + "sp.curitiba.png" };
 
                 // Popula dinamicamente os ComboBoxes de filtro baseados nas viagens existentes
                 PreencherFiltros();
@@ -55,6 +47,47 @@ namespace Nexo_App.UI
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao inicializar página: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void picMapa_Click(object sender, EventArgs e)
+        {
+            // Só abre se o PictureBox principal realmente tiver uma imagem ou URL carregada
+            if (picMapa.Image == null && string.IsNullOrWhiteSpace(picMapa.ImageLocation))
+            {
+                return;
+            }
+
+            // 1. Cria um formulário dinâmico que vai funcionar como nossa "MessageBox de Imagem"
+            using (Form formPopUp = new Form())
+            {
+                formPopUp.Text = "Visualização da Rota";
+                formPopUp.Size = new Size(640, 640); // Tamanho grande para ver os detalhes
+                formPopUp.StartPosition = FormStartPosition.CenterParent;
+                formPopUp.FormBorderStyle = FormBorderStyle.FixedDialog; // Remove botões de maximizar
+                formPopUp.MaximizeBox = false;
+                formPopUp.MinimizeBox = false;
+
+                // 2. Cria o PictureBox expandido dentro desse formulário
+                PictureBox picGrande = new PictureBox();
+                picGrande.Dock = DockStyle.Fill; // Ocupa a tela inteira do pop-up
+                picGrande.SizeMode = PictureBoxSizeMode.Zoom; // Mantém a proporção sem distorcer
+
+                // 3. Passa a imagem correta (seja URL ou arquivo local) do pai para o pop-up
+                if (!string.IsNullOrWhiteSpace(picMapa.ImageLocation))
+                {
+                    // Se for URL da API, carrega de forma assíncrona no pop-up também
+                    picGrande.ImageLocation = picMapa.ImageLocation;
+                }
+                else if (picMapa.Image != null)
+                {
+                    // Se for o upload físico local
+                    picGrande.Image = picMapa.Image;
+                }
+
+                // 4. Adiciona o PictureBox ao formulário e exibe como caixa de diálogo modal
+                formPopUp.Controls.Add(picGrande);
+                formPopUp.ShowDialog(this);
             }
         }
 
@@ -85,7 +118,7 @@ namespace Nexo_App.UI
 
             foreach (var v in viagens)
             {
-                dgvViagens.Rows.Add(
+                int rowIndex = dgvViagens.Rows.Add(
                     v.CdViagem,
                     v.NmOrigem,
                     v.NmDestino,
@@ -93,6 +126,10 @@ namespace Nexo_App.UI
                     v.VlPreco.ToString("C2"), // Formatação de moeda local
                     v.QtLivres
                 );
+
+                // Gambiarra profissional: Vincula o objeto viagem inteiro à propriedade Tag da linha
+                // para podermos resgatar o ds_imagem depois no clique da célula.
+                dgvViagens.Rows[rowIndex].Tag = v;
             }
         }
 
@@ -131,12 +168,9 @@ namespace Nexo_App.UI
                 return;
             }
 
-            // Captura o ID oculto (colId) da linha selecionada
-            int idViagem = (int)dgvViagens.SelectedRows[0].Cells["colId"].Value;
-
-            // Busca a viagem completa na memória e guarda na sessão
-            var todas = _viagemBLL.ListarDisponiveis(null, null, null);
-            Sessao.ViagemSelecionada = todas.Find(x => x.CdViagem == idViagem);
+            // Captura o objeto Viagem associado à linha selecionada diretamente da Tag
+            Viagem vSelecionada = (Viagem)dgvViagens.SelectedRows[0].Tag;
+            Sessao.ViagemSelecionada = vSelecionada;
 
             // Abre a tela de escolha de poltronas (FormAssentos)
             new FormAssentos().Show();
@@ -152,25 +186,51 @@ namespace Nexo_App.UI
 
         private void dgvViagens_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Se clicou no cabeçalho ou fora de uma linha válida, ignora
             if (e.RowIndex < 0) return;
 
-            string origem = dgvViagens.Rows[e.RowIndex].Cells["colOrigem"].Value.ToString().ToLower();
-            string destino = dgvViagens.Rows[e.RowIndex].Cells["colDestino"].Value.ToString().ToLower();
-            string chave = origem + "|" + destino;
-
-            if (infoViagens.ContainsKey(chave))
+            // Resgata o objeto Viagem da linha clicada através da Tag
+            if (dgvViagens.Rows[e.RowIndex].Tag is Viagem viagemClicada)
             {
-                string[] info = infoViagens[chave];
-                lblDuracao.Text = "⏱ Duração: " + info[0];
+                // Limpa renderizações antigas do PictureBox para evitar sobreposição
+                picMapa.Image = null;
+                picMapa.ImageLocation = null;
 
+                // Atualiza o rótulo de duração de forma visual caso necessário, ou limpa
+                lblDuracao.Text = "⏱ Duração: Sob Consulta";
+
+                // Se não houver imagem salva no banco para essa viagem, aborta o carregamento
+                if (string.IsNullOrWhiteSpace(viagemClicada.DsImagem))
+                {
+                    return;
+                }
 
                 try
                 {
-                    picMapa.Image = Image.FromFile(info[1]);
+                    // CENÁRIO A: Imagem gerada automaticamente pela API do MapQuest
+                    if (viagemClicada.DsImagem.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                    {
+                        picMapa.SizeMode = PictureBoxSizeMode.Zoom;
+                        picMapa.ImageLocation = viagemClicada.DsImagem; // Baixa a imagem da internet de forma assíncrona
+                    }
+                    // CENÁRIO B: Imagem local enviada manualmente pelo Admin (Upload Físico)
+                    else
+                    {
+                        // Combina o caminho de execução atual do app com o subdiretório relativo salvo no banco
+                        string caminhoCompleto = Path.Combine(Application.StartupPath, viagemClicada.DsImagem);
+
+                        if (File.Exists(caminhoCompleto))
+                        {
+                            picMapa.SizeMode = PictureBoxSizeMode.Zoom;
+                            picMapa.Image = Image.FromFile(caminhoCompleto);
+                        }
+                    }
                 }
-                catch (Exception ex)
+                catch
                 {
+                    // Previne quedas do sistema caso o arquivo local seja deletado ou o cliente esteja offline
                     picMapa.Image = null;
+                    picMapa.ImageLocation = null;
                 }
             }
         }

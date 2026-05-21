@@ -61,5 +61,48 @@ namespace Nexo_App.DAL
                 }
             }
         }
+
+        public void Alterar(Usuario u)
+        {
+            string sql = @"UPDATE Usuario SET 
+                    nm_usuario = @nm_usuario, 
+                    nm_email = @nm_email, 
+                    nm_telefone = @nm_telefone, 
+                    cd_cep = @cd_cep, 
+                    nm_rua = @nm_rua, 
+                    nm_bairro = @nm_bairro, 
+                    nm_cidade = @nm_cidade, 
+                    sg_estado = @sg_estado, 
+                    ic_tipo = @ic_tipo 
+                  WHERE cd_usuario = @cd_usuario";
+
+            using (var con = Conexao.Abrir())
+            using (var cmd = new SqlCommand(sql, con))
+            {
+                cmd.Parameters.AddWithValue("@cd_usuario", u.CdUsuario);
+                cmd.Parameters.AddWithValue("@nm_usuario", u.NmUsuario);
+                cmd.Parameters.AddWithValue("@nm_email", u.NmEmail);
+                cmd.Parameters.AddWithValue("@nm_telefone", u.NmTelefone);
+                cmd.Parameters.AddWithValue("@cd_cep", u.CdCep);
+                cmd.Parameters.AddWithValue("@nm_rua", u.NmRua);
+                cmd.Parameters.AddWithValue("@nm_bairro", u.NmBairro);
+                cmd.Parameters.AddWithValue("@nm_cidade", u.NmCidade);
+                cmd.Parameters.AddWithValue("@sg_estado", u.SgEstado);
+                cmd.Parameters.AddWithValue("@ic_tipo", u.IcTipo);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Excluir(int cdUsuario)
+        {
+            string sql = "DELETE FROM Usuario WHERE cd_usuario = @cd_usuario";
+            using (var con = Conexao.Abrir())
+            using (var cmd = new SqlCommand(sql, con))
+            {
+                cmd.Parameters.AddWithValue("@cd_usuario", cdUsuario);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Nexo_App.UI
 
             try
             {
-                var dal = new AssentoDAL();
+                var dal = new ViagemAssentoDAL.AssentoDAL();
                 var assentos = dal.ListarPorViagem(Sessao.ViagemSelecionada.CdViagem);
 
                 if (assentos == null || assentos.Count == 0) return;

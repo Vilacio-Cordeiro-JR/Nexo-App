@@ -24,6 +24,7 @@ namespace Nexo_App.Models
         public DateTime DtViagem   { get; set; }
         public decimal  VlPreco    { get; set; }
         public int      QtLivres   { get; set; } // usado só na listagem
+        public string   DsImagem   { get; set; }
     }
 
     public class Assento

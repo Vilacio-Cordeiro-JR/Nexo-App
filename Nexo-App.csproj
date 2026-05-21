@@ -72,6 +72,18 @@
     <Compile Include="Models\Models.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\FormEditarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormEditarUsuario.Designer.cs">
+      <DependentUpon>FormEditarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormEditarViagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormEditarViagem.Designer.cs">
+      <DependentUpon>FormEditarViagem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\RoundedTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +150,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormConfirmacao.resx">
       <DependentUpon>FormConfirmacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormEditarUsuario.resx">
+      <DependentUpon>FormEditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormEditarViagem.resx">
+      <DependentUpon>FormEditarViagem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormHome.resx">
       <DependentUpon>FormHome.cs</DependentUpon>

@@ -58,11 +58,11 @@
             // 
             this.lblNomeC.AutoSize = true;
             this.lblNomeC.BackColor = System.Drawing.Color.Transparent;
-            this.lblNomeC.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblNomeC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblNomeC.ForeColor = System.Drawing.Color.Black;
             this.lblNomeC.Location = new System.Drawing.Point(76, 68);
             this.lblNomeC.Name = "lblNomeC";
-            this.lblNomeC.Size = new System.Drawing.Size(138, 18);
+            this.lblNomeC.Size = new System.Drawing.Size(120, 16);
             this.lblNomeC.TabIndex = 1;
             this.lblNomeC.Text = "Nome completo:";
             // 
@@ -70,11 +70,11 @@
             // 
             this.lblEmailC.AutoSize = true;
             this.lblEmailC.BackColor = System.Drawing.Color.Transparent;
-            this.lblEmailC.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblEmailC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblEmailC.ForeColor = System.Drawing.Color.Black;
             this.lblEmailC.Location = new System.Drawing.Point(76, 120);
             this.lblEmailC.Name = "lblEmailC";
-            this.lblEmailC.Size = new System.Drawing.Size(60, 18);
+            this.lblEmailC.Size = new System.Drawing.Size(55, 16);
             this.lblEmailC.TabIndex = 3;
             this.lblEmailC.Text = "E-mail:";
             // 
@@ -82,11 +82,11 @@
             // 
             this.lblSenhaC.AutoSize = true;
             this.lblSenhaC.BackColor = System.Drawing.Color.Transparent;
-            this.lblSenhaC.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblSenhaC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblSenhaC.ForeColor = System.Drawing.Color.Black;
             this.lblSenhaC.Location = new System.Drawing.Point(75, 172);
             this.lblSenhaC.Name = "lblSenhaC";
-            this.lblSenhaC.Size = new System.Drawing.Size(58, 18);
+            this.lblSenhaC.Size = new System.Drawing.Size(55, 16);
             this.lblSenhaC.TabIndex = 5;
             this.lblSenhaC.Text = "Senha:";
             // 
@@ -94,11 +94,11 @@
             // 
             this.lblTelefoneC.AutoSize = true;
             this.lblTelefoneC.BackColor = System.Drawing.Color.Transparent;
-            this.lblTelefoneC.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblTelefoneC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblTelefoneC.ForeColor = System.Drawing.Color.Black;
             this.lblTelefoneC.Location = new System.Drawing.Point(75, 224);
             this.lblTelefoneC.Name = "lblTelefoneC";
-            this.lblTelefoneC.Size = new System.Drawing.Size(80, 18);
+            this.lblTelefoneC.Size = new System.Drawing.Size(73, 16);
             this.lblTelefoneC.TabIndex = 7;
             this.lblTelefoneC.Text = "Telefone:";
             // 
@@ -106,19 +106,19 @@
             // 
             this.lblCepC.AutoSize = true;
             this.lblCepC.BackColor = System.Drawing.Color.Transparent;
-            this.lblCepC.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblCepC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblCepC.ForeColor = System.Drawing.Color.Black;
             this.lblCepC.Location = new System.Drawing.Point(275, 224);
             this.lblCepC.Name = "lblCepC";
-            this.lblCepC.Size = new System.Drawing.Size(42, 18);
+            this.lblCepC.Size = new System.Drawing.Size(41, 16);
             this.lblCepC.TabIndex = 9;
             this.lblCepC.Text = "CEP:";
             // 
             // btnBuscarCEP
             // 
-            this.btnBuscarCEP.BackColor = System.Drawing.Color.Navy;
+            this.btnBuscarCEP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.btnBuscarCEP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarCEP.Font = new System.Drawing.Font("Menseal Black", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBuscarCEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnBuscarCEP.ForeColor = System.Drawing.Color.White;
             this.btnBuscarCEP.Location = new System.Drawing.Point(483, 245);
             this.btnBuscarCEP.Name = "btnBuscarCEP";
@@ -132,11 +132,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(76, 295);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 18);
+            this.label1.Size = new System.Drawing.Size(39, 16);
             this.label1.TabIndex = 12;
             this.label1.Text = "Rua:";
             // 
@@ -144,11 +144,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(75, 347);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.Size = new System.Drawing.Size(53, 16);
             this.label2.TabIndex = 14;
             this.label2.Text = "Bairro:";
             // 
@@ -156,11 +156,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(76, 399);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 18);
+            this.label3.Size = new System.Drawing.Size(61, 16);
             this.label3.TabIndex = 16;
             this.label3.Text = "Cidade:";
             // 
@@ -168,11 +168,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(75, 451);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 18);
+            this.label4.Size = new System.Drawing.Size(60, 16);
             this.label4.TabIndex = 18;
             this.label4.Text = "Estado:";
             // 
@@ -180,20 +180,20 @@
             // 
             this.lblErro.AutoSize = true;
             this.lblErro.BackColor = System.Drawing.Color.Transparent;
-            this.lblErro.Font = new System.Drawing.Font("Menseal Black", 8F, System.Drawing.FontStyle.Bold);
+            this.lblErro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.lblErro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblErro.Location = new System.Drawing.Point(188, 617);
             this.lblErro.Name = "lblErro";
-            this.lblErro.Size = new System.Drawing.Size(296, 15);
+            this.lblErro.Size = new System.Drawing.Size(238, 13);
             this.lblErro.TabIndex = 20;
             this.lblErro.Text = "Preencha todos os campos corretamente";
             this.lblErro.Visible = false;
             // 
             // btnSalvar
             // 
-            this.btnSalvar.BackColor = System.Drawing.Color.Navy;
+            this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalvar.Font = new System.Drawing.Font("Menseal Black", 14F, System.Drawing.FontStyle.Bold);
+            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
             this.btnSalvar.Location = new System.Drawing.Point(78, 518);
             this.btnSalvar.Name = "btnSalvar";
@@ -208,7 +208,7 @@
             this.btnVoltar.BackColor = System.Drawing.Color.Transparent;
             this.btnVoltar.FlatAppearance.BorderSize = 0;
             this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoltar.Font = new System.Drawing.Font("Menseal SemBd", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
             this.btnVoltar.ForeColor = System.Drawing.Color.Black;
             this.btnVoltar.Location = new System.Drawing.Point(268, 564);
             this.btnVoltar.Name = "btnVoltar";
@@ -330,11 +330,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Menseal Black", 24F, System.Drawing.FontStyle.Bold);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(348, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(243, 45);
+            this.label5.Size = new System.Drawing.Size(194, 37);
             this.label5.TabIndex = 32;
             this.label5.Text = "Bem-Vindo!";
             // 

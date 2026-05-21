@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEditarViagem));
             this.panelTopo = new System.Windows.Forms.Panel();
             this.btnSair = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -35,19 +36,19 @@
             this.panelData = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtOrigem = new Nexo_App.UI.RoundedTextBox();
+            this.txtDestino = new Nexo_App.UI.RoundedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grpPreco = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtPreco = new Nexo_App.UI.RoundedTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtAssentos = new Nexo_App.UI.RoundedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnCriarViagem = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.txtOrigem = new Nexo_App.UI.RoundedTextBox();
-            this.txtDestino = new Nexo_App.UI.RoundedTextBox();
-            this.txtPreco = new Nexo_App.UI.RoundedTextBox();
-            this.txtAssentos = new Nexo_App.UI.RoundedTextBox();
             this.txtDuracaoAdmin = new Nexo_App.UI.RoundedTextBox();
             this.panelTopo.SuspendLayout();
             this.grpRota.SuspendLayout();
@@ -141,6 +142,32 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Origem:";
             // 
+            // txtOrigem
+            // 
+            this.txtOrigem.BackColor = System.Drawing.Color.Transparent;
+            this.txtOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
+            this.txtOrigem.Location = new System.Drawing.Point(6, 48);
+            this.txtOrigem.MostrarBorda = false;
+            this.txtOrigem.Name = "txtOrigem";
+            this.txtOrigem.Padding = new System.Windows.Forms.Padding(10);
+            this.txtOrigem.PasswordChar = '\0';
+            this.txtOrigem.PlaceholderText = "";
+            this.txtOrigem.Size = new System.Drawing.Size(350, 31);
+            this.txtOrigem.TabIndex = 12;
+            // 
+            // txtDestino
+            // 
+            this.txtDestino.BackColor = System.Drawing.Color.Transparent;
+            this.txtDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
+            this.txtDestino.Location = new System.Drawing.Point(6, 100);
+            this.txtDestino.MostrarBorda = false;
+            this.txtDestino.Name = "txtDestino";
+            this.txtDestino.Padding = new System.Windows.Forms.Padding(10);
+            this.txtDestino.PasswordChar = '\0';
+            this.txtDestino.PlaceholderText = "";
+            this.txtDestino.Size = new System.Drawing.Size(350, 31);
+            this.txtDestino.TabIndex = 13;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -189,6 +216,19 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Preço (R$):";
             // 
+            // txtPreco
+            // 
+            this.txtPreco.BackColor = System.Drawing.Color.Transparent;
+            this.txtPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
+            this.txtPreco.Location = new System.Drawing.Point(6, 57);
+            this.txtPreco.MostrarBorda = false;
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Padding = new System.Windows.Forms.Padding(10);
+            this.txtPreco.PasswordChar = '\0';
+            this.txtPreco.PlaceholderText = "";
+            this.txtPreco.Size = new System.Drawing.Size(352, 31);
+            this.txtPreco.TabIndex = 14;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -199,6 +239,19 @@
             this.label6.Size = new System.Drawing.Size(149, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "Quantidade de Assentos:";
+            // 
+            // txtAssentos
+            // 
+            this.txtAssentos.BackColor = System.Drawing.Color.Transparent;
+            this.txtAssentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
+            this.txtAssentos.Location = new System.Drawing.Point(8, 136);
+            this.txtAssentos.MostrarBorda = false;
+            this.txtAssentos.Name = "txtAssentos";
+            this.txtAssentos.Padding = new System.Windows.Forms.Padding(10);
+            this.txtAssentos.PasswordChar = '\0';
+            this.txtAssentos.PlaceholderText = "";
+            this.txtAssentos.Size = new System.Drawing.Size(350, 31);
+            this.txtAssentos.TabIndex = 15;
             // 
             // label8
             // 
@@ -251,58 +304,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // txtOrigem
-            // 
-            this.txtOrigem.BackColor = System.Drawing.Color.Transparent;
-            this.txtOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtOrigem.Location = new System.Drawing.Point(6, 48);
-            this.txtOrigem.MostrarBorda = false;
-            this.txtOrigem.Name = "txtOrigem";
-            this.txtOrigem.Padding = new System.Windows.Forms.Padding(10);
-            this.txtOrigem.PasswordChar = '\0';
-            this.txtOrigem.PlaceholderText = "";
-            this.txtOrigem.Size = new System.Drawing.Size(350, 31);
-            this.txtOrigem.TabIndex = 12;
-            // 
-            // txtDestino
-            // 
-            this.txtDestino.BackColor = System.Drawing.Color.Transparent;
-            this.txtDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtDestino.Location = new System.Drawing.Point(6, 100);
-            this.txtDestino.MostrarBorda = false;
-            this.txtDestino.Name = "txtDestino";
-            this.txtDestino.Padding = new System.Windows.Forms.Padding(10);
-            this.txtDestino.PasswordChar = '\0';
-            this.txtDestino.PlaceholderText = "";
-            this.txtDestino.Size = new System.Drawing.Size(350, 31);
-            this.txtDestino.TabIndex = 13;
-            // 
-            // txtPreco
-            // 
-            this.txtPreco.BackColor = System.Drawing.Color.Transparent;
-            this.txtPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtPreco.Location = new System.Drawing.Point(6, 57);
-            this.txtPreco.MostrarBorda = false;
-            this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Padding = new System.Windows.Forms.Padding(10);
-            this.txtPreco.PasswordChar = '\0';
-            this.txtPreco.PlaceholderText = "";
-            this.txtPreco.Size = new System.Drawing.Size(352, 31);
-            this.txtPreco.TabIndex = 14;
-            // 
-            // txtAssentos
-            // 
-            this.txtAssentos.BackColor = System.Drawing.Color.Transparent;
-            this.txtAssentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtAssentos.Location = new System.Drawing.Point(8, 136);
-            this.txtAssentos.MostrarBorda = false;
-            this.txtAssentos.Name = "txtAssentos";
-            this.txtAssentos.Padding = new System.Windows.Forms.Padding(10);
-            this.txtAssentos.PasswordChar = '\0';
-            this.txtAssentos.PlaceholderText = "";
-            this.txtAssentos.Size = new System.Drawing.Size(350, 31);
-            this.txtAssentos.TabIndex = 15;
-            // 
             // txtDuracaoAdmin
             // 
             this.txtDuracaoAdmin.BackColor = System.Drawing.Color.Transparent;
@@ -331,6 +332,7 @@
             this.Controls.Add(this.btnCriarViagem);
             this.Controls.Add(this.panelTopo);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEditarViagem";
             this.Text = "FormEditarViagem";
             this.panelTopo.ResumeLayout(false);

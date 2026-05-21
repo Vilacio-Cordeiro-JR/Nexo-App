@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.lblBemVindo = new System.Windows.Forms.Label();
             this.grpBusca = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -45,33 +46,34 @@
             this.colPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAssentos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSelecionar = new System.Windows.Forms.Button();
+            this.panelDetalhes = new System.Windows.Forms.Panel();
+            this.lblDuracao = new System.Windows.Forms.Label();
+            this.picMapa = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelTopo = new System.Windows.Forms.Panel();
             this.btnSair = new System.Windows.Forms.Button();
-            this.panelDetalhes = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.picMapa = new System.Windows.Forms.PictureBox();
-            this.lblDuracao = new System.Windows.Forms.Label();
             this.grpBusca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViagens)).BeginInit();
-            this.panelTopo.SuspendLayout();
             this.panelDetalhes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMapa)).BeginInit();
+            this.panelTopo.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblBemVindo
             // 
             this.lblBemVindo.AutoSize = true;
             this.lblBemVindo.BackColor = System.Drawing.Color.Transparent;
-            this.lblBemVindo.Font = new System.Drawing.Font("Menseal Black", 15F, System.Drawing.FontStyle.Bold);
-            this.lblBemVindo.ForeColor = System.Drawing.Color.White;
+            this.lblBemVindo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
+            this.lblBemVindo.ForeColor = System.Drawing.Color.Black;
             this.lblBemVindo.Location = new System.Drawing.Point(12, 87);
             this.lblBemVindo.Name = "lblBemVindo";
-            this.lblBemVindo.Size = new System.Drawing.Size(152, 28);
+            this.lblBemVindo.Size = new System.Drawing.Size(126, 25);
             this.lblBemVindo.TabIndex = 1;
             this.lblBemVindo.Text = "Bem-Vindo!";
             // 
             // grpBusca
             // 
+            this.grpBusca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.grpBusca.Controls.Add(this.btnBuscar);
             this.grpBusca.Controls.Add(this.dtpData);
             this.grpBusca.Controls.Add(this.label2);
@@ -89,10 +91,10 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Navy;
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
             this.btnBuscar.FlatAppearance.BorderSize = 0;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Menseal Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Location = new System.Drawing.Point(684, 28);
             this.btnBuscar.Name = "btnBuscar";
@@ -112,10 +114,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(463, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 18);
+            this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "Data:";
             // 
@@ -131,10 +133,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(230, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 18);
+            this.label1.Size = new System.Drawing.Size(64, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Destino:";
             // 
@@ -150,17 +152,17 @@
             // labemorigem
             // 
             this.labemorigem.AutoSize = true;
-            this.labemorigem.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.labemorigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.labemorigem.Location = new System.Drawing.Point(6, 34);
             this.labemorigem.Name = "labemorigem";
-            this.labemorigem.Size = new System.Drawing.Size(71, 18);
+            this.labemorigem.Size = new System.Drawing.Size(61, 16);
             this.labemorigem.TabIndex = 0;
             this.labemorigem.Text = "Origem:";
             // 
             // dgvViagens
             // 
             this.dgvViagens.AllowUserToAddRows = false;
-            this.dgvViagens.BackgroundColor = System.Drawing.Color.White;
+            this.dgvViagens.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(87)))), ((int)(((byte)(152)))));
             this.dgvViagens.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvViagens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViagens.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -223,17 +225,61 @@
             // 
             // btnSelecionar
             // 
-            this.btnSelecionar.BackColor = System.Drawing.Color.Navy;
+            this.btnSelecionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(168)))), ((int)(((byte)(120)))));
             this.btnSelecionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelecionar.Font = new System.Drawing.Font("Anton", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelecionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelecionar.ForeColor = System.Drawing.Color.White;
-            this.btnSelecionar.Location = new System.Drawing.Point(11, 252);
+            this.btnSelecionar.Location = new System.Drawing.Point(11, 238);
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.Size = new System.Drawing.Size(148, 60);
             this.btnSelecionar.TabIndex = 4;
             this.btnSelecionar.Text = "→";
             this.btnSelecionar.UseVisualStyleBackColor = false;
             this.btnSelecionar.Click += new System.EventHandler(this.btnSelecionar_Click);
+            // 
+            // panelDetalhes
+            // 
+            this.panelDetalhes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.panelDetalhes.Controls.Add(this.lblDuracao);
+            this.panelDetalhes.Controls.Add(this.btnSelecionar);
+            this.panelDetalhes.Controls.Add(this.picMapa);
+            this.panelDetalhes.Controls.Add(this.label3);
+            this.panelDetalhes.Location = new System.Drawing.Point(667, 228);
+            this.panelDetalhes.Name = "panelDetalhes";
+            this.panelDetalhes.Size = new System.Drawing.Size(167, 312);
+            this.panelDetalhes.TabIndex = 5;
+            // 
+            // lblDuracao
+            // 
+            this.lblDuracao.AutoSize = true;
+            this.lblDuracao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDuracao.ForeColor = System.Drawing.Color.White;
+            this.lblDuracao.Location = new System.Drawing.Point(8, 201);
+            this.lblDuracao.Name = "lblDuracao";
+            this.lblDuracao.Size = new System.Drawing.Size(84, 16);
+            this.lblDuracao.TabIndex = 2;
+            this.lblDuracao.Text = "Duração: --";
+            // 
+            // picMapa
+            // 
+            this.picMapa.BackColor = System.Drawing.Color.Silver;
+            this.picMapa.Location = new System.Drawing.Point(15, 36);
+            this.picMapa.Name = "picMapa";
+            this.picMapa.Size = new System.Drawing.Size(140, 140);
+            this.picMapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMapa.TabIndex = 1;
+            this.picMapa.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(26, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 24);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Detalhes";
             // 
             // panelTopo
             // 
@@ -251,7 +297,7 @@
             // 
             this.btnSair.BackColor = System.Drawing.Color.DarkRed;
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Font = new System.Drawing.Font("Menseal Black", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.btnSair.ForeColor = System.Drawing.Color.White;
             this.btnSair.Location = new System.Drawing.Point(742, 18);
             this.btnSair.Name = "btnSair";
@@ -261,63 +307,23 @@
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
-            // panelDetalhes
-            // 
-            this.panelDetalhes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(37)))), ((int)(((byte)(64)))));
-            this.panelDetalhes.Controls.Add(this.lblDuracao);
-            this.panelDetalhes.Controls.Add(this.btnSelecionar);
-            this.panelDetalhes.Controls.Add(this.picMapa);
-            this.panelDetalhes.Controls.Add(this.label3);
-            this.panelDetalhes.Location = new System.Drawing.Point(667, 228);
-            this.panelDetalhes.Name = "panelDetalhes";
-            this.panelDetalhes.Size = new System.Drawing.Size(167, 312);
-            this.panelDetalhes.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Menseal", 14F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(26, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 27);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Detalhes";
-            // 
-            // picMapa
-            // 
-            this.picMapa.BackColor = System.Drawing.Color.Navy;
-            this.picMapa.Location = new System.Drawing.Point(8, 39);
-            this.picMapa.Name = "picMapa";
-            this.picMapa.Size = new System.Drawing.Size(151, 126);
-            this.picMapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picMapa.TabIndex = 1;
-            this.picMapa.TabStop = false;
-            // 
-            // lblDuracao
-            // 
-            this.lblDuracao.AutoSize = true;
-            this.lblDuracao.Font = new System.Drawing.Font("Menseal Med", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuracao.ForeColor = System.Drawing.Color.White;
-            this.lblDuracao.Location = new System.Drawing.Point(8, 201);
-            this.lblDuracao.Name = "lblDuracao";
-            this.lblDuracao.Size = new System.Drawing.Size(101, 18);
-            this.lblDuracao.TabIndex = 2;
-            this.lblDuracao.Text = "Duração: --";
-            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(37)))), ((int)(((byte)(64)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BackgroundImage = global::Nexo_App.Properties.Resources.backbranconexo2;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(834, 561);
             this.Controls.Add(this.panelDetalhes);
             this.Controls.Add(this.dgvViagens);
             this.Controls.Add(this.grpBusca);
             this.Controls.Add(this.lblBemVindo);
             this.Controls.Add(this.panelTopo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -326,10 +332,10 @@
             this.grpBusca.ResumeLayout(false);
             this.grpBusca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViagens)).EndInit();
-            this.panelTopo.ResumeLayout(false);
             this.panelDetalhes.ResumeLayout(false);
             this.panelDetalhes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMapa)).EndInit();
+            this.panelTopo.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

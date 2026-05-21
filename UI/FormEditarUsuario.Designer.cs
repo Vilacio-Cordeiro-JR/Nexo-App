@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEditarUsuario));
             this.txtEstado = new Nexo_App.UI.RoundedTextBox();
             this.txtCidade = new Nexo_App.UI.RoundedTextBox();
             this.txtBairro = new Nexo_App.UI.RoundedTextBox();
@@ -149,7 +150,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.BackColor = System.Drawing.Color.Navy;
+            this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnSalvar.ForeColor = System.Drawing.Color.White;
@@ -224,7 +225,7 @@
             // 
             // btnBuscarCEP
             // 
-            this.btnBuscarCEP.BackColor = System.Drawing.Color.Navy;
+            this.btnBuscarCEP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.btnBuscarCEP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnBuscarCEP.ForeColor = System.Drawing.Color.White;
@@ -337,6 +338,7 @@
             this.Controls.Add(this.lblEmailC);
             this.Controls.Add(this.lblNomeC);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEditarUsuario";
             this.Text = "FormEditarUsuario";
             this.ResumeLayout(false);

@@ -45,8 +45,9 @@
             // lblViagem
             // 
             this.lblViagem.AutoSize = true;
+            this.lblViagem.BackColor = System.Drawing.Color.Transparent;
             this.lblViagem.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblViagem.ForeColor = System.Drawing.Color.White;
+            this.lblViagem.ForeColor = System.Drawing.Color.Black;
             this.lblViagem.Location = new System.Drawing.Point(29, 41);
             this.lblViagem.Name = "lblViagem";
             this.lblViagem.Size = new System.Drawing.Size(266, 22);
@@ -57,7 +58,7 @@
             // 
             this.lblCorLivre.AutoSize = true;
             this.lblCorLivre.BackColor = System.Drawing.Color.Green;
-            this.lblCorLivre.Location = new System.Drawing.Point(353, 46);
+            this.lblCorLivre.Location = new System.Drawing.Point(353, 116);
             this.lblCorLivre.Name = "lblCorLivre";
             this.lblCorLivre.Size = new System.Drawing.Size(16, 13);
             this.lblCorLivre.TabIndex = 1;
@@ -66,9 +67,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(375, 45);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(375, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 2;
@@ -77,9 +79,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(459, 46);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(459, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 15);
             this.label2.TabIndex = 4;
@@ -88,8 +91,8 @@
             // lblCorOcupado
             // 
             this.lblCorOcupado.AutoSize = true;
-            this.lblCorOcupado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCorOcupado.Location = new System.Drawing.Point(437, 47);
+            this.lblCorOcupado.BackColor = System.Drawing.Color.Red;
+            this.lblCorOcupado.Location = new System.Drawing.Point(437, 117);
             this.lblCorOcupado.Name = "lblCorOcupado";
             this.lblCorOcupado.Size = new System.Drawing.Size(16, 13);
             this.lblCorOcupado.TabIndex = 3;
@@ -98,9 +101,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(564, 47);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(564, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 15);
             this.label3.TabIndex = 6;
@@ -109,8 +113,8 @@
             // lblCorSelecionado
             // 
             this.lblCorSelecionado.AutoSize = true;
-            this.lblCorSelecionado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblCorSelecionado.Location = new System.Drawing.Point(542, 48);
+            this.lblCorSelecionado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.lblCorSelecionado.Location = new System.Drawing.Point(542, 118);
             this.lblCorSelecionado.Name = "lblCorSelecionado";
             this.lblCorSelecionado.Size = new System.Drawing.Size(16, 13);
             this.lblCorSelecionado.TabIndex = 5;
@@ -119,7 +123,7 @@
             // panelAssentos
             // 
             this.panelAssentos.AutoScroll = true;
-            this.panelAssentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(0)))), ((int)(((byte)(106)))));
+            this.panelAssentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.panelAssentos.Location = new System.Drawing.Point(33, 163);
             this.panelAssentos.Name = "panelAssentos";
             this.panelAssentos.Size = new System.Drawing.Size(620, 380);
@@ -128,8 +132,9 @@
             // lblSelecionados
             // 
             this.lblSelecionados.AutoSize = true;
+            this.lblSelecionados.BackColor = System.Drawing.Color.Transparent;
             this.lblSelecionados.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.lblSelecionados.ForeColor = System.Drawing.Color.White;
+            this.lblSelecionados.ForeColor = System.Drawing.Color.Black;
             this.lblSelecionados.Location = new System.Drawing.Point(29, 113);
             this.lblSelecionados.Name = "lblSelecionados";
             this.lblSelecionados.Size = new System.Drawing.Size(260, 19);
@@ -138,7 +143,7 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(96)))), ((int)(((byte)(0)))));
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
@@ -154,7 +159,7 @@
             // 
             this.btnVoltar.BackColor = System.Drawing.Color.Transparent;
             this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoltar.ForeColor = System.Drawing.Color.White;
+            this.btnVoltar.ForeColor = System.Drawing.Color.Black;
             this.btnVoltar.Location = new System.Drawing.Point(33, 559);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(200, 40);
@@ -168,6 +173,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(37)))), ((int)(((byte)(64)))));
+            this.BackgroundImage = global::Nexo_App.Properties.Resources.nexobackcadas;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(684, 611);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.panelAssentos);
@@ -180,6 +187,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCorLivre);
             this.Controls.Add(this.lblViagem);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

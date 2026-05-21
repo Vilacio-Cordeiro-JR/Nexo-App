@@ -19,6 +19,7 @@ namespace Nexo_App.UI
         {
             // Garante que o painel não vai criar barras de rolagem e vai travar o tamanho fixo
             panelAssentos.AutoScroll = false;
+            panelAssentos.BackColor = Color.FromArgb(80, 0, 120, 215);
 
             // Limpa seleções antigas antes de iniciar
             Sessao.AssentosSelecionados.Clear();

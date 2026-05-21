@@ -202,6 +202,7 @@
     <None Include="Resources\Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup3.png" />
     <None Include="Resources\Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup4.png" />
     <None Include="Resources\Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup5.png" />
+    <None Include="Resources\backconfirmacao2.png" />
     <Content Include="Resources\nexobackground.png" />
     <None Include="Resources\sp.santos.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

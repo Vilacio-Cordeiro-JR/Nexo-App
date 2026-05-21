@@ -1,7 +1,8 @@
+using Nexo_App.BLL;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
-using Nexo_App.BLL;
 
 namespace Nexo_App.UI
 {
@@ -10,6 +11,11 @@ namespace Nexo_App.UI
         public FormConfirmacao()
         {
             InitializeComponent();
+            AplicarBordaArredondada(panelResumo, 15);
+            AplicarBordaArredondada(panel1, 15);
+            AplicarBordaArredondada(panel2, 15);
+            AplicarBordaArredondada(btnConfirmar, 15);
+            AplicarBordaArredondada(btnVoltar, 15);
         }
 
         private void FormConfirmacao_Load(object sender, EventArgs e)
@@ -90,6 +96,17 @@ namespace Nexo_App.UI
             var formHome = new FormHome();
             formHome.Show();
             this.Dispose();
+        }
+
+        private void AplicarBordaArredondada(Control ctrl, int raio)
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(0, 0, raio, raio, 180, 90);
+            path.AddArc(ctrl.Width - raio, 0, raio, raio, 270, 90);
+            path.AddArc(ctrl.Width - raio, ctrl.Height - raio, raio, raio, 0, 90);
+            path.AddArc(0, ctrl.Height - raio, raio, raio, 90, 90);
+            path.CloseAllFigures();
+            ctrl.Region = new Region(path);
         }
     }
 }

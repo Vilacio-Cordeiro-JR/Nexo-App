@@ -180,17 +180,29 @@
     <None Include="Resources\nexopretoebranco10.png" />
     <None Include="Resources\nexopretoebranco7.png" />
     <None Include="Resources\nexopretoebranco6.png" />
-    <None Include="Resources\sp.curitiba.png" />
-    <None Include="Resources\sp.ubatuba.png" />
-    <None Include="Resources\sp.rj.png" />
-    <None Include="Resources\bh.rj.png" />
+    <None Include="Resources\sp.curitiba.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sp.ubatuba.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sp.rj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bh.rj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\backbranconexo2.png" />
     <None Include="Resources\backbranconexo3.png" />
     <None Include="Resources\backbranconexo6.png" />
     <None Include="Resources\backbranconexo7.png" />
     <Content Include="Resources\nexobackground.png" />
-    <None Include="Resources\sp.santos.png" />
-    <None Include="Resources\sp.bertioga.png" />
+    <None Include="Resources\sp.santos.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sp.bertioga.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\nexopretoebranco5.png" />
     <None Include="Resources\nexobackgrounddd.png" />
     <None Include="Resources\fundoadmin.png" />

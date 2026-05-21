@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
 using Nexo_App.BLL;
 using Nexo_App.Models;
 
@@ -8,6 +9,9 @@ namespace Nexo_App.UI
 {
     public partial class FormHome : Form
     {
+
+        private Dictionary<string, string[]> infoViagens = new Dictionary<string, string[]>();
+
         private readonly ViagemBLL _viagemBLL = new ViagemBLL();
 
         public FormHome()
@@ -31,6 +35,19 @@ namespace Nexo_App.UI
 
                 // Inicializa o Grid com todas as viagens futuras disponíveis
                 CarregarGrid(null, null, null);
+
+
+
+                string basePath = Application.StartupPath + "\\Resources\\";
+
+                infoViagens["santos|são paulo"] = new string[] { "1h 30min", basePath + "sp.santos.png" };
+                infoViagens["belo horizonte|rio de janeiro"] = new string[] { "5h 00min", basePath + "bh.rj.png" };
+                infoViagens["são paulo|bertioga"] = new string[] { "2h 15min", basePath + "sp.bertioga.png" };
+                infoViagens["são paulo|rio de janeiro"] = new string[] { "6h 00min", basePath + "sp.rj.png" };
+                infoViagens["são paulo|ubatuba"] = new string[] { "2h 00min", basePath + "sp.ubatuba.png" };
+                infoViagens["são paulo|curitiba"] = new string[] { "5h 30min", basePath + "sp.curitiba.png" };
+                infoViagens["rio de janeiro|são paulo"] = new string[] { "6h 00min", basePath + "sp.rj.png" };
+                infoViagens["curitiba|são paulo"] = new string[] { "5h 30min", basePath + "sp.curitiba.png" };
 
                 // Popula dinamicamente os ComboBoxes de filtro baseados nas viagens existentes
                 PreencherFiltros();
@@ -133,9 +150,29 @@ namespace Nexo_App.UI
             this.Close();
         }
 
-        private void dgvViagens_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvViagens_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Mantido apenas para evitar quebras com o designer
+            if (e.RowIndex < 0) return;
+
+            string origem = dgvViagens.Rows[e.RowIndex].Cells["colOrigem"].Value.ToString().ToLower();
+            string destino = dgvViagens.Rows[e.RowIndex].Cells["colDestino"].Value.ToString().ToLower();
+            string chave = origem + "|" + destino;
+
+            if (infoViagens.ContainsKey(chave))
+            {
+                string[] info = infoViagens[chave];
+                lblDuracao.Text = "⏱ Duração: " + info[0];
+
+
+                try
+                {
+                    picMapa.Image = Image.FromFile(info[1]);
+                }
+                catch (Exception ex)
+                {
+                    picMapa.Image = null;
+                }
+            }
         }
     }
 }

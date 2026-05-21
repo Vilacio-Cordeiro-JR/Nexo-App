@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdmin));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.picMapaAdmin = new System.Windows.Forms.PictureBox();
+            this.btnEscolherImagem = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.panelData = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnCriarViagem = new System.Windows.Forms.Button();
@@ -52,16 +55,26 @@
             this.panelTopo = new System.Windows.Forms.Panel();
             this.btnSair = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtAssentos = new Nexo_App.UI.RoundedTextBox();
+            this.grpRota = new System.Windows.Forms.GroupBox();
+            this.grpPreco = new System.Windows.Forms.GroupBox();
+            this.grpResumo = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtDuracaoAdmin = new Nexo_App.UI.RoundedTextBox();
+            this.txtImagemPath = new Nexo_App.UI.RoundedTextBox();
             this.txtPreco = new Nexo_App.UI.RoundedTextBox();
-            this.txtDestino = new Nexo_App.UI.RoundedTextBox();
+            this.txtAssentos = new Nexo_App.UI.RoundedTextBox();
             this.txtOrigem = new Nexo_App.UI.RoundedTextBox();
+            this.txtDestino = new Nexo_App.UI.RoundedTextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapaAdmin)).BeginInit();
             this.panelData.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
             this.panelTopo.SuspendLayout();
+            this.grpRota.SuspendLayout();
+            this.grpPreco.SuspendLayout();
+            this.grpResumo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -81,18 +94,10 @@
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.tabPage1.BackgroundImage = global::Nexo_App.Properties.Resources.backbranconexo7;
             this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabPage1.Controls.Add(this.panelData);
-            this.tabPage1.Controls.Add(this.txtAssentos);
-            this.tabPage1.Controls.Add(this.txtPreco);
-            this.tabPage1.Controls.Add(this.txtDestino);
-            this.tabPage1.Controls.Add(this.txtOrigem);
-            this.tabPage1.Controls.Add(this.btnCriarViagem);
+            this.tabPage1.Controls.Add(this.grpResumo);
+            this.tabPage1.Controls.Add(this.grpPreco);
+            this.tabPage1.Controls.Add(this.grpRota);
             this.tabPage1.Controls.Add(this.lblErroAdmin);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -100,13 +105,44 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Criar Viagem";
             // 
+            // picMapaAdmin
+            // 
+            this.picMapaAdmin.BackColor = System.Drawing.Color.White;
+            this.picMapaAdmin.Location = new System.Drawing.Point(16, 79);
+            this.picMapaAdmin.Name = "picMapaAdmin";
+            this.picMapaAdmin.Size = new System.Drawing.Size(198, 107);
+            this.picMapaAdmin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMapaAdmin.TabIndex = 20;
+            this.picMapaAdmin.TabStop = false;
+            // 
+            // btnEscolherImagem
+            // 
+            this.btnEscolherImagem.Location = new System.Drawing.Point(240, 43);
+            this.btnEscolherImagem.Name = "btnEscolherImagem";
+            this.btnEscolherImagem.Size = new System.Drawing.Size(100, 143);
+            this.btnEscolherImagem.TabIndex = 19;
+            this.btnEscolherImagem.Text = "📁 Escolher";
+            this.btnEscolherImagem.UseVisualStyleBackColor = true;
+            this.btnEscolherImagem.Click += new System.EventHandler(this.btnEscolherImagem_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(11, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(111, 15);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Imagem da Rota:";
+            // 
             // panelData
             // 
             this.panelData.BackColor = System.Drawing.Color.Transparent;
             this.panelData.Controls.Add(this.dateTimePicker1);
-            this.panelData.Location = new System.Drawing.Point(303, 175);
+            this.panelData.Location = new System.Drawing.Point(8, 159);
             this.panelData.Name = "panelData";
-            this.panelData.Size = new System.Drawing.Size(348, 30);
+            this.panelData.Size = new System.Drawing.Size(350, 30);
             this.panelData.TabIndex = 16;
             // 
             // dateTimePicker1
@@ -117,7 +153,7 @@
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(348, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(350, 31);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // btnCriarViagem
@@ -126,9 +162,9 @@
             this.btnCriarViagem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCriarViagem.Font = new System.Drawing.Font("Menseal Black", 15F, System.Drawing.FontStyle.Bold);
             this.btnCriarViagem.ForeColor = System.Drawing.Color.White;
-            this.btnCriarViagem.Location = new System.Drawing.Point(303, 372);
+            this.btnCriarViagem.Location = new System.Drawing.Point(459, 118);
             this.btnCriarViagem.Name = "btnCriarViagem";
-            this.btnCriarViagem.Size = new System.Drawing.Size(348, 40);
+            this.btnCriarViagem.Size = new System.Drawing.Size(218, 40);
             this.btnCriarViagem.TabIndex = 11;
             this.btnCriarViagem.Text = "✔ Criar Viagem";
             this.btnCriarViagem.UseVisualStyleBackColor = false;
@@ -152,7 +188,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(308, 284);
+            this.label6.Location = new System.Drawing.Point(15, 118);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(161, 15);
             this.label6.TabIndex = 8;
@@ -163,7 +199,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(308, 222);
+            this.label5.Location = new System.Drawing.Point(15, 39);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 6;
@@ -174,7 +210,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(308, 156);
+            this.label4.Location = new System.Drawing.Point(13, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 15);
             this.label4.TabIndex = 4;
@@ -185,7 +221,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(308, 90);
+            this.label3.Location = new System.Drawing.Point(13, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 2;
@@ -196,7 +232,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(308, 25);
+            this.label2.Location = new System.Drawing.Point(13, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 15);
             this.label2.TabIndex = 0;
@@ -330,57 +366,141 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Painel Administrativo";
             // 
-            // txtAssentos
+            // grpRota
             // 
-            this.txtAssentos.BackColor = System.Drawing.Color.Transparent;
-            this.txtAssentos.Font = new System.Drawing.Font("Menseal Med", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtAssentos.Location = new System.Drawing.Point(303, 302);
-            this.txtAssentos.MostrarBorda = false;
-            this.txtAssentos.Name = "txtAssentos";
-            this.txtAssentos.Padding = new System.Windows.Forms.Padding(10);
-            this.txtAssentos.PasswordChar = '\0';
-            this.txtAssentos.PlaceholderText = "";
-            this.txtAssentos.Size = new System.Drawing.Size(233, 31);
-            this.txtAssentos.TabIndex = 15;
+            this.grpRota.Controls.Add(this.panelData);
+            this.grpRota.Controls.Add(this.label2);
+            this.grpRota.Controls.Add(this.txtOrigem);
+            this.grpRota.Controls.Add(this.txtDestino);
+            this.grpRota.Controls.Add(this.label3);
+            this.grpRota.Controls.Add(this.label4);
+            this.grpRota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpRota.Font = new System.Drawing.Font("Menseal", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpRota.Location = new System.Drawing.Point(36, 19);
+            this.grpRota.Name = "grpRota";
+            this.grpRota.Size = new System.Drawing.Size(364, 208);
+            this.grpRota.TabIndex = 21;
+            this.grpRota.TabStop = false;
+            this.grpRota.Text = "Rota e Viagem";
+            // 
+            // grpPreco
+            // 
+            this.grpPreco.Controls.Add(this.label5);
+            this.grpPreco.Controls.Add(this.txtPreco);
+            this.grpPreco.Controls.Add(this.label6);
+            this.grpPreco.Controls.Add(this.txtAssentos);
+            this.grpPreco.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpPreco.Font = new System.Drawing.Font("Menseal", 9.75F, System.Drawing.FontStyle.Bold);
+            this.grpPreco.Location = new System.Drawing.Point(427, 19);
+            this.grpPreco.Name = "grpPreco";
+            this.grpPreco.Size = new System.Drawing.Size(364, 208);
+            this.grpPreco.TabIndex = 22;
+            this.grpPreco.TabStop = false;
+            this.grpPreco.Text = "Preço e Capacidade";
+            // 
+            // grpResumo
+            // 
+            this.grpResumo.Controls.Add(this.txtDuracaoAdmin);
+            this.grpResumo.Controls.Add(this.label8);
+            this.grpResumo.Controls.Add(this.btnCriarViagem);
+            this.grpResumo.Controls.Add(this.txtImagemPath);
+            this.grpResumo.Controls.Add(this.label7);
+            this.grpResumo.Controls.Add(this.picMapaAdmin);
+            this.grpResumo.Controls.Add(this.btnEscolherImagem);
+            this.grpResumo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpResumo.Font = new System.Drawing.Font("Menseal", 9.75F, System.Drawing.FontStyle.Bold);
+            this.grpResumo.Location = new System.Drawing.Point(36, 246);
+            this.grpResumo.Name = "grpResumo";
+            this.grpResumo.Size = new System.Drawing.Size(755, 201);
+            this.grpResumo.TabIndex = 23;
+            this.grpResumo.TabStop = false;
+            this.grpResumo.Text = "Resumo da Viagem";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Menseal SemBd", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(405, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 15);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "⏱ Duração: --";
+            // 
+            // txtDuracaoAdmin
+            // 
+            this.txtDuracaoAdmin.BackColor = System.Drawing.Color.Transparent;
+            this.txtDuracaoAdmin.Location = new System.Drawing.Point(399, 43);
+            this.txtDuracaoAdmin.MostrarBorda = true;
+            this.txtDuracaoAdmin.Name = "txtDuracaoAdmin";
+            this.txtDuracaoAdmin.Padding = new System.Windows.Forms.Padding(10);
+            this.txtDuracaoAdmin.PasswordChar = '\0';
+            this.txtDuracaoAdmin.PlaceholderText = "";
+            this.txtDuracaoAdmin.Size = new System.Drawing.Size(350, 30);
+            this.txtDuracaoAdmin.TabIndex = 22;
+            // 
+            // txtImagemPath
+            // 
+            this.txtImagemPath.BackColor = System.Drawing.Color.Transparent;
+            this.txtImagemPath.Location = new System.Drawing.Point(14, 43);
+            this.txtImagemPath.MostrarBorda = true;
+            this.txtImagemPath.Name = "txtImagemPath";
+            this.txtImagemPath.Padding = new System.Windows.Forms.Padding(10);
+            this.txtImagemPath.PasswordChar = '\0';
+            this.txtImagemPath.PlaceholderText = "";
+            this.txtImagemPath.Size = new System.Drawing.Size(200, 30);
+            this.txtImagemPath.TabIndex = 18;
             // 
             // txtPreco
             // 
             this.txtPreco.BackColor = System.Drawing.Color.Transparent;
             this.txtPreco.Font = new System.Drawing.Font("Menseal Med", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtPreco.Location = new System.Drawing.Point(303, 240);
+            this.txtPreco.Location = new System.Drawing.Point(6, 57);
             this.txtPreco.MostrarBorda = false;
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Padding = new System.Windows.Forms.Padding(10);
             this.txtPreco.PasswordChar = '\0';
             this.txtPreco.PlaceholderText = "";
-            this.txtPreco.Size = new System.Drawing.Size(348, 31);
+            this.txtPreco.Size = new System.Drawing.Size(352, 31);
             this.txtPreco.TabIndex = 14;
             // 
-            // txtDestino
+            // txtAssentos
             // 
-            this.txtDestino.BackColor = System.Drawing.Color.Transparent;
-            this.txtDestino.Font = new System.Drawing.Font("Menseal Med", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtDestino.Location = new System.Drawing.Point(303, 108);
-            this.txtDestino.MostrarBorda = false;
-            this.txtDestino.Name = "txtDestino";
-            this.txtDestino.Padding = new System.Windows.Forms.Padding(10);
-            this.txtDestino.PasswordChar = '\0';
-            this.txtDestino.PlaceholderText = "";
-            this.txtDestino.Size = new System.Drawing.Size(348, 31);
-            this.txtDestino.TabIndex = 13;
+            this.txtAssentos.BackColor = System.Drawing.Color.Transparent;
+            this.txtAssentos.Font = new System.Drawing.Font("Menseal Med", 12.5F, System.Drawing.FontStyle.Bold);
+            this.txtAssentos.Location = new System.Drawing.Point(8, 136);
+            this.txtAssentos.MostrarBorda = false;
+            this.txtAssentos.Name = "txtAssentos";
+            this.txtAssentos.Padding = new System.Windows.Forms.Padding(10);
+            this.txtAssentos.PasswordChar = '\0';
+            this.txtAssentos.PlaceholderText = "";
+            this.txtAssentos.Size = new System.Drawing.Size(350, 31);
+            this.txtAssentos.TabIndex = 15;
             // 
             // txtOrigem
             // 
             this.txtOrigem.BackColor = System.Drawing.Color.Transparent;
             this.txtOrigem.Font = new System.Drawing.Font("Menseal Med", 12.5F, System.Drawing.FontStyle.Bold);
-            this.txtOrigem.Location = new System.Drawing.Point(303, 43);
+            this.txtOrigem.Location = new System.Drawing.Point(8, 40);
             this.txtOrigem.MostrarBorda = false;
             this.txtOrigem.Name = "txtOrigem";
             this.txtOrigem.Padding = new System.Windows.Forms.Padding(10);
             this.txtOrigem.PasswordChar = '\0';
             this.txtOrigem.PlaceholderText = "";
-            this.txtOrigem.Size = new System.Drawing.Size(348, 31);
+            this.txtOrigem.Size = new System.Drawing.Size(350, 31);
             this.txtOrigem.TabIndex = 12;
+            // 
+            // txtDestino
+            // 
+            this.txtDestino.BackColor = System.Drawing.Color.Transparent;
+            this.txtDestino.Font = new System.Drawing.Font("Menseal Med", 12.5F, System.Drawing.FontStyle.Bold);
+            this.txtDestino.Location = new System.Drawing.Point(8, 100);
+            this.txtDestino.MostrarBorda = false;
+            this.txtDestino.Name = "txtDestino";
+            this.txtDestino.Padding = new System.Windows.Forms.Padding(10);
+            this.txtDestino.PasswordChar = '\0';
+            this.txtDestino.PlaceholderText = "";
+            this.txtDestino.Size = new System.Drawing.Size(350, 31);
+            this.txtDestino.TabIndex = 13;
             // 
             // FormAdmin
             // 
@@ -400,11 +520,18 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapaAdmin)).EndInit();
             this.panelData.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
             this.panelTopo.ResumeLayout(false);
             this.panelTopo.PerformLayout();
+            this.grpRota.ResumeLayout(false);
+            this.grpRota.PerformLayout();
+            this.grpPreco.ResumeLayout(false);
+            this.grpPreco.PerformLayout();
+            this.grpResumo.ResumeLayout(false);
+            this.grpResumo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -438,5 +565,14 @@
         private RoundedTextBox txtPreco;
         private RoundedTextBox txtAssentos;
         private System.Windows.Forms.Panel panelData;
+        private System.Windows.Forms.Label label7;
+        private RoundedTextBox txtImagemPath;
+        private System.Windows.Forms.Button btnEscolherImagem;
+        private System.Windows.Forms.PictureBox picMapaAdmin;
+        private System.Windows.Forms.GroupBox grpPreco;
+        private System.Windows.Forms.GroupBox grpRota;
+        private System.Windows.Forms.GroupBox grpResumo;
+        private System.Windows.Forms.Label label8;
+        private RoundedTextBox txtDuracaoAdmin;
     }
 }

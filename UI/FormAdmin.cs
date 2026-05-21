@@ -1,5 +1,6 @@
 using Nexo_App.BLL;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -16,12 +17,19 @@ namespace Nexo_App.UI
             dateTimePicker1.CalendarForeColor = Color.Black;
             AplicarBordaArredondada(btnCriarViagem, 30);
             AplicarBordaArredondada(btnAtualizar, 30);
+            txtImagemPath.Enabled = false;
+            AplicarBordaArredondada(grpRota, 15);
+            AplicarBordaArredondada(grpPreco, 15);
+            AplicarBordaArredondada(grpResumo, 15);
         }
 
         private void btnCriarViagem_Click(object sender, EventArgs e)
         {
             try
             {
+
+
+
                 var bll = new ViagemBLL();
                 bll.CriarViagem(
                     txtOrigem.Text,
@@ -110,6 +118,7 @@ namespace Nexo_App.UI
             AplicarBordaArredondada(panelData, 20);
 
 
+
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
 
@@ -133,6 +142,22 @@ namespace Nexo_App.UI
             btn.Region = new Region(path);
         }
 
-        
+        private void btnEscolherImagem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Escolher imagem da viagem";
+            dialog.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtImagemPath.Text = dialog.FileName;
+                picMapaAdmin.Image = Image.FromFile(dialog.FileName);
+            }
+        }
+
+        //private void btnEscolherImagem_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

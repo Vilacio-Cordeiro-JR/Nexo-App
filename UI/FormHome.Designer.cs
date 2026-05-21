@@ -47,9 +47,15 @@
             this.btnSelecionar = new System.Windows.Forms.Button();
             this.panelTopo = new System.Windows.Forms.Panel();
             this.btnSair = new System.Windows.Forms.Button();
+            this.panelDetalhes = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.picMapa = new System.Windows.Forms.PictureBox();
+            this.lblDuracao = new System.Windows.Forms.Label();
             this.grpBusca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViagens)).BeginInit();
             this.panelTopo.SuspendLayout();
+            this.panelDetalhes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapa)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBemVindo
@@ -171,6 +177,7 @@
             this.dgvViagens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvViagens.Size = new System.Drawing.Size(651, 312);
             this.dgvViagens.TabIndex = 3;
+            this.dgvViagens.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvViagens_CellClick);
             // 
             // colId
             // 
@@ -220,9 +227,9 @@
             this.btnSelecionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelecionar.Font = new System.Drawing.Font("Anton", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelecionar.ForeColor = System.Drawing.Color.White;
-            this.btnSelecionar.Location = new System.Drawing.Point(667, 228);
+            this.btnSelecionar.Location = new System.Drawing.Point(11, 252);
             this.btnSelecionar.Name = "btnSelecionar";
-            this.btnSelecionar.Size = new System.Drawing.Size(151, 312);
+            this.btnSelecionar.Size = new System.Drawing.Size(148, 60);
             this.btnSelecionar.TabIndex = 4;
             this.btnSelecionar.Text = "→";
             this.btnSelecionar.UseVisualStyleBackColor = false;
@@ -254,6 +261,50 @@
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // panelDetalhes
+            // 
+            this.panelDetalhes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(37)))), ((int)(((byte)(64)))));
+            this.panelDetalhes.Controls.Add(this.lblDuracao);
+            this.panelDetalhes.Controls.Add(this.btnSelecionar);
+            this.panelDetalhes.Controls.Add(this.picMapa);
+            this.panelDetalhes.Controls.Add(this.label3);
+            this.panelDetalhes.Location = new System.Drawing.Point(667, 228);
+            this.panelDetalhes.Name = "panelDetalhes";
+            this.panelDetalhes.Size = new System.Drawing.Size(167, 312);
+            this.panelDetalhes.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Menseal", 14F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(26, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 27);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Detalhes";
+            // 
+            // picMapa
+            // 
+            this.picMapa.BackColor = System.Drawing.Color.Navy;
+            this.picMapa.Location = new System.Drawing.Point(8, 39);
+            this.picMapa.Name = "picMapa";
+            this.picMapa.Size = new System.Drawing.Size(151, 126);
+            this.picMapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMapa.TabIndex = 1;
+            this.picMapa.TabStop = false;
+            // 
+            // lblDuracao
+            // 
+            this.lblDuracao.AutoSize = true;
+            this.lblDuracao.Font = new System.Drawing.Font("Menseal Med", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDuracao.ForeColor = System.Drawing.Color.White;
+            this.lblDuracao.Location = new System.Drawing.Point(8, 201);
+            this.lblDuracao.Name = "lblDuracao";
+            this.lblDuracao.Size = new System.Drawing.Size(101, 18);
+            this.lblDuracao.TabIndex = 2;
+            this.lblDuracao.Text = "Duração: --";
+            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,7 +312,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(37)))), ((int)(((byte)(64)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(834, 561);
-            this.Controls.Add(this.btnSelecionar);
+            this.Controls.Add(this.panelDetalhes);
             this.Controls.Add(this.dgvViagens);
             this.Controls.Add(this.grpBusca);
             this.Controls.Add(this.lblBemVindo);
@@ -276,6 +327,9 @@
             this.grpBusca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViagens)).EndInit();
             this.panelTopo.ResumeLayout(false);
+            this.panelDetalhes.ResumeLayout(false);
+            this.panelDetalhes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +356,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPreco;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAssentos;
         private System.Windows.Forms.Button btnSelecionar;
+        private System.Windows.Forms.Panel panelDetalhes;
+        private System.Windows.Forms.Label lblDuracao;
+        private System.Windows.Forms.PictureBox picMapa;
+        private System.Windows.Forms.Label label3;
     }
 }

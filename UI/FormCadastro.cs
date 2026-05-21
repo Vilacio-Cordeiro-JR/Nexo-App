@@ -1,8 +1,9 @@
+using Nexo_App.BLL;
 using System;
+using System.Drawing;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Nexo_App.BLL;
 
 
 namespace Nexo_App.UI
@@ -12,6 +13,9 @@ namespace Nexo_App.UI
         public FormCadastro()
         {
             InitializeComponent();
+            AplicarBordaArredondada(btnSalvar, 30);
+            AplicarBordaArredondada(btnBuscarCEP, 30);
+            AplicarBordaArredondada(btnVoltar, 30);
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -108,6 +112,17 @@ namespace Nexo_App.UI
             // O '\s*' avisa o C# para aceitar qualquer espaço que venha da API
             var m = Regex.Match(json, $"\"{chave}\"\\s*:\\s*\"([^\"]+)\"");
             return m.Success ? m.Groups[1].Value : "";
+        }
+
+        private void AplicarBordaArredondada(Control ctrl, int raio)
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(0, 0, raio, raio, 180, 90);
+            path.AddArc(ctrl.Width - raio, 0, raio, raio, 270, 90);
+            path.AddArc(ctrl.Width - raio, ctrl.Height - raio, raio, raio, 0, 90);
+            path.AddArc(0, ctrl.Height - raio, raio, raio, 90, 90);
+            path.CloseAllFigures();
+            ctrl.Region = new Region(path);
         }
     }
 }

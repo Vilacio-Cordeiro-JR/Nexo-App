@@ -130,6 +130,12 @@
   <data name="backbranconexo7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\backbranconexo7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="backcadas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backcadas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="backgroundcadastro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backgroundcadastro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bh_rj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bh.rj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,6 +153,18 @@
   </data>
   <data name="fundologinamd2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fundologinamd2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nexobackcadas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nexobackcadas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="nexobackgrounddd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nexobackgrounddd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

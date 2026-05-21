@@ -103,6 +103,26 @@ namespace Nexo_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backcadas {
+            get {
+                object obj = ResourceManager.GetObject("backcadas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backgroundcadastro {
+            get {
+                object obj = ResourceManager.GetObject("backgroundcadastro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bh_rj {
             get {
                 object obj = ResourceManager.GetObject("bh_rj", resourceCulture);
@@ -156,6 +176,46 @@ namespace Nexo_App.Properties {
         internal static System.Drawing.Bitmap fundologinamd2 {
             get {
                 object obj = ResourceManager.GetObject("fundologinamd2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup3 {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup4 {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup5 {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_ivhtcuivhtcuivht_cleanup5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nexobackcadas {
+            get {
+                object obj = ResourceManager.GetObject("nexobackcadas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

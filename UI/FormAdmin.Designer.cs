@@ -583,8 +583,7 @@
             this.dgvViagens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvViagens.Size = new System.Drawing.Size(651, 312);
             this.dgvViagens.TabIndex = 4;
-            this.dgvViagens.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvViagens_CellContentClick);
-            // 
+            this.dgvViagens.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvViagens_SelectionChanged);            // 
             // colId
             // 
             this.colId.HeaderText = "ID";

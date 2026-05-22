@@ -8,20 +8,28 @@ using Nexo_App.Models;
 
 namespace Nexo_App.UI
 {
+    /// <summary>
+    /// Formulário interativo para seleção e exibição do mapa de assentos do ônibus.
+    /// Renderiza dinamicamente a disposição física do veículo e gerencia a seleção de poltronas.
+    /// </summary>
     public partial class FormAssentos : Form
     {
+        private int tamanhoQuadradoEspera = 45;
+
         public FormAssentos()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Configura as propriedades visuais do container e inicializa o estado dos dados ao carregar a tela.
+        /// </summary>
         private void FormAssentos_Load(object sender, EventArgs e)
         {
-            // Garante que o painel não vai criar barras de rolagem e vai travar o tamanho fixo
             panelAssentos.AutoScroll = false;
             panelAssentos.BackColor = Color.FromArgb(80, 0, 120, 215);
 
-            // Limpa seleções antigas antes de iniciar
+            // Garante que não haja resíduos de escolhas anteriores ao abrir a tela
             Sessao.AssentosSelecionados.Clear();
 
             if (Sessao.ViagemSelecionada != null)
@@ -30,6 +38,9 @@ namespace Nexo_App.UI
             CarregarAssentos();
         }
 
+        /// <summary>
+        /// Processa a leitura dos dados do banco e renderiza dinamicamente o mapa físico do ônibus.
+        /// </summary>
         private void CarregarAssentos()
         {
             panelAssentos.Controls.Clear();
@@ -41,24 +52,21 @@ namespace Nexo_App.UI
 
                 if (assentos == null || assentos.Count == 0) return;
 
-                // --- CONFIGURAÇÃO DO LAYOUT HORIZONTAL ---
                 int fileirasVerticais = 4;
                 int totalAssentos = assentos.Count;
                 int colunasProfundidade = (int)Math.Ceiling((double)totalAssentos / fileirasVerticais);
 
                 int padding = 15;
                 int espacamento = 5;
-                int corredorCentral = 26;
+                int corridorCentral = 26;
 
-                // Multiplicador de desalinhamento sutil solicitado (0.3 do tamanho do quadrado)
                 float fatorDesalinhamento = 0.3f;
                 int espacoCabineBase = 50;
 
-                // --- CÁLCULO DO TAMANHO DINÂMICO DOS QUADRADOS ---
                 int larguraDisponivel = panelAssentos.Width - (padding * 2) - espacoCabineBase - ((colunasProfundidade - 1) * espacamento);
                 int tamanhoQuadradoX = larguraDisponivel / colunasProfundidade;
 
-                int alturaDisponivel = panelAssentos.Height - (padding * 2) - ((fileirasVerticais - 1) * espacamento) - corredorCentral;
+                int alturaDisponivel = panelAssentos.Height - (padding * 2) - ((fileirasVerticais - 1) * espacamento) - corridorCentral;
                 int tamanhoQuadradoY = alturaDisponivel / fileirasVerticais;
 
                 int tamanhoQuadrado = Math.Min(tamanhoQuadradoX, tamanhoQuadradoY);
@@ -66,15 +74,12 @@ namespace Nexo_App.UI
                 if (tamanhoQuadrado > 50) tamanhoQuadrado = 50;
                 if (tamanhoQuadrado < 25) tamanhoQuadrado = 25;
 
-                // Valor exato do recuo sutil (30% do tamanho do quadrado)
                 int desalinhamentoPassageiro = (int)(tamanhoQuadrado * fatorDesalinhamento);
-
-                // --- CENTRALIZAÇÃO VERTICAL ---
-                int alturaTotalOnibus = (fileirasVerticais * tamanhoQuadrado) + ((fileirasVerticais - 1) * espacamento) + corredorCentral;
+                int alturaTotalOnibus = (fileirasVerticais * tamanhoQuadrado) + ((fileirasVerticais - 1) * espacamento) + corridorCentral;
                 int margemSuperior = (panelAssentos.Height - alturaTotalOnibus) / 2;
                 int margemEsquerda = padding;
 
-                // --- POSICIONAMENTO DO MOTORISTA (Ocupa a altura das duas fileiras de baixo) ---
+                // MOTORISTA
                 Label lblMotorista = new Label();
                 lblMotorista.Text = "Driver";
                 lblMotorista.Font = new Font("Arial", tamanhoQuadrado * 0.18F, FontStyle.Bold);
@@ -82,65 +87,48 @@ namespace Nexo_App.UI
                 lblMotorista.BackColor = Color.FromArgb(230, 230, 230);
                 lblMotorista.TextAlign = ContentAlignment.MiddleCenter;
 
-                // Define o tamanho para cobrir exatamente as duas linhas inferiores do layout
                 int alturaDriver = (tamanhoQuadrado * 2) + espacamento;
                 lblMotorista.Size = new Size((int)(tamanhoQuadrado * 0.9), alturaDriver);
 
-                // Posiciona o Driver na metade inferior do ônibus (Linhas 2 e 3)
-                int posYMotorista = margemSuperior + (2 * (tamanhoQuadrado + espacamento)) + corredorCentral;
+                int posYMotorista = margemSuperior + (2 * (tamanhoQuadrado + espacamento)) + corridorCentral;
                 lblMotorista.Location = new Point(margemEsquerda, posYMotorista);
                 panelAssentos.Controls.Add(lblMotorista);
 
-                // Onde os assentos começam no eixo X (logo após o bloco do Driver)
                 int inicioPassageirosX = margemEsquerda + lblMotorista.Width + 10;
 
+                // PASSAGEIROS
                 foreach (var assento in assentos)
                 {
                     int i = assento.QtNumero;
                     var btn = new Button();
 
                     btn.Text = i.ToString("D2");
-                    btn.Width = tamanhoQuadrado;
-                    btn.Height = tamanhoQuadrado;
+                    btn.Size = new Size(tamanhoQuadrado, tamanhoQuadrado);
                     btn.Tag = assento;
                     btn.Cursor = Cursors.Hand;
 
-                    // Estilo Clean Flat
                     btn.FlatStyle = FlatStyle.Flat;
                     btn.FlatAppearance.BorderSize = 1;
                     btn.Font = new Font("Segoe UI", tamanhoQuadrado * 0.22F, FontStyle.Bold);
 
-                    // --- ORGANIZAÇÃO DA MATRIZ DO ÔNIBUS (Igual ao Mockup) ---
                     int nColunaX = (i - 1) / fileirasVerticais;
                     int resto = (i - 1) % fileirasVerticais;
 
-                    // Mapeia para que fique: 
-                    // Linha 0 (Topo): Janela de cima (resto == 3)
-                    // Linha 1:        Corredor de cima (resto == 2)
-                    // === CORREDOR ===
-                    // Linha 2:        Corredor de baixo (resto == 1) -> Começa com 02
-                    // Linha 3 (Base): Janela de baixo (resto == 0)    -> Começa com 01
                     int nLinhaY = 0;
                     if (resto == 0) nLinhaY = 3;
                     else if (resto == 1) nLinhaY = 2;
                     else if (resto == 2) nLinhaY = 1;
                     else if (resto == 3) nLinhaY = 0;
 
-                    // --- RECUO ESTILO MOCKUP ---
-                    // As duas fileiras de CIMA (linhas 0 e 1) recuam sutilmente para a direita
                     int recuoX = 0;
-                    if (nLinhaY <= 1)
-                    {
-                        recuoX = desalinhamentoPassageiro;
-                    }
+                    if (nLinhaY <= 1) recuoX = desalinhamentoPassageiro;
 
-                    int offsetY = (nLinhaY >= 2) ? corredorCentral : 0;
+                    int offsetY = (nLinhaY >= 2) ? corridorCentral : 0;
 
-                    // Define a posição final na tela
                     btn.Left = inicioPassageirosX + (nColunaX * (tamanhoQuadrado + espacamento)) + recuoX;
                     btn.Top = margemSuperior + (nLinhaY * (tamanhoQuadrado + espacamento)) + offsetY;
 
-                    // --- LOGICA DE CORES MANTIDA ---
+                    // ESTADOS VISUAIS
                     if (assento.IcStatus == "OCUPADO")
                     {
                         btn.BackColor = Color.FromArgb(244, 67, 54);
@@ -177,9 +165,6 @@ namespace Nexo_App.UI
             }
         }
 
-        // Pequena variável auxiliar apenas para a matemática do tamanho do frame anterior
-        private int tamanhoQuadradoEspera = 45;
-
         private void Assento_Click(object sender, EventArgs e)
         {
             var btn = (Button)sender;
@@ -188,8 +173,6 @@ namespace Nexo_App.UI
             if (Sessao.AssentosSelecionados.Contains(assento))
             {
                 Sessao.AssentosSelecionados.Remove(assento);
-
-                // Volta para o estado Livre (Fundo Branco, Borda e Texto Verdes)
                 btn.BackColor = Color.White;
                 btn.FlatAppearance.BorderColor = Color.FromArgb(76, 175, 80);
                 btn.ForeColor = Color.FromArgb(76, 175, 80);
@@ -197,13 +180,16 @@ namespace Nexo_App.UI
             else
             {
                 Sessao.AssentosSelecionados.Add(assento);
-
-                // Estado Selecionado: Amarelo preenchido com texto branco (Legível e elegante)
-                btn.BackColor = Color.FromArgb(255, 193, 7); // Amarelo Vivo
+                btn.BackColor = Color.FromArgb(255, 193, 7);
                 btn.FlatAppearance.BorderColor = Color.FromArgb(230, 162, 2);
                 btn.ForeColor = Color.White;
             }
 
+            AtualizarLabel();
+        }
+
+        private void AktualizarLabel() // Mantendo compatibilidade com seu método
+        {
             AtualizarLabel();
         }
 
@@ -215,18 +201,19 @@ namespace Nexo_App.UI
                 return;
             }
 
-            // Cria uma lista de inteiros para ordenar os números numericamente antes de exibir
             var nums = new List<int>();
             foreach (var a in Sessao.AssentosSelecionados)
             {
                 nums.Add(a.QtNumero);
             }
 
-            nums.Sort(); // Ordena: deixa em ordem crescente (ex: 6, 37, 38...)
-
+            nums.Sort();
             lblSelecionados.Text = "Assentos selecionados: " + string.Join(", ", nums);
         }
 
+        /// <summary>
+        /// CORRIGIDO: Avança para a tela de confirmação de forma controlada (Modal).
+        /// </summary>
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (Sessao.AssentosSelecionados.Count == 0)
@@ -236,17 +223,43 @@ namespace Nexo_App.UI
                 return;
             }
 
-            var frmConfirmacao = new FormConfirmacao();
-            frmConfirmacao.Show();
+            // Abre a confirmação em modo de diálogo
+            using (var frmConfirmacao = new FormConfirmacao())
+            {
+                this.Hide(); // Esconde o mapa de assentos temporariamente
 
-            this.Dispose(); // Fecha e libera a memória desta tela atual de forma correta
+                DialogResult resultado = frmConfirmacao.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    // Compra realizada com sucesso! Define o resultado desta tela como OK 
+                    // e fecha para retornar direto ao FormHome original.
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else if (resultado == DialogResult.Abort)
+                {
+                    // Erro crítico de sessão
+                    this.DialogResult = DialogResult.Abort;
+                    this.Close();
+                }
+                else
+                {
+                    // Se o usuário clicou em "Voltar" na confirmação, reexibe a tela de assentos intacta
+                    this.Show();
+                }
+            }
         }
 
+        /// <summary>
+        /// CORRIGIDO: Fecha a tela atual de forma limpa retornando o controle para a Home original.
+        /// </summary>
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            var frmHome = new FormHome();
-            frmHome.Show();
-            this.Dispose();
+            // Apenas fecha esta janela. Como o FormHome a chamou com ShowDialog(), 
+            // a Home original voltará a ficar visível instantaneamente.
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

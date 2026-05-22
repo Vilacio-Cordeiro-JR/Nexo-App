@@ -9,89 +9,111 @@ using System.Windows.Forms;
 
 namespace Nexo_App.UI
 {
+    /// <summary>
+    /// Formulário administrativo do sistema.
+    /// Permite o gerenciamento de viagens, controle de assentos e visualização de usuários e reservas.
+    /// </summary>
     public partial class FormAdmin : Form
     {
+        // Instâncias das regras de negócio (Business Logic Layer)
         private readonly ViagemBLL _viagemBll = new ViagemBLL();
         private readonly UsuarioBLL _usuarioBLL = new UsuarioBLL();
+
+        // Armazena a viagem que está sendo editada (nulo se o modo atual for de criação)
         private Viagem viagemEmEdicao = null;
 
         public FormAdmin()
         {
             InitializeComponent();
 
-            // Estilização do painel da Data
+            // =================================================================
+            // ESTILIZAÇÃO E IDENTIDADE VISUAL DOS COMPONENTES
+            // =================================================================
+
+            // Configuração do painel da Data
             panelData.BackColor = Color.White;
             panelData.Invalidate();
             AplicarBordaArredondada(panelData, 20);
             dateTimePicker1.CalendarForeColor = Color.Black;
 
-            // Estilização dos Botões Principais
+            // Arredondamento dos Botões Principais (30px de raio para visual pílula)
             AplicarBordaArredondada(btnCriarViagem, 30);
             AplicarBordaArredondada(btnAtualizar, 30);
 
-            // Estilização dos GroupBoxes
+            // Arredondamento dos GroupBoxes organizadores de layout
             AplicarBordaArredondada(grpRota, 15);
             AplicarBordaArredondada(grpPreco, 15);
             AplicarBordaArredondada(grpResumo, 15);
 
-            // Configuração e Estilização Físicas do PictureBox (Quadrado Perfeito 1x1)
+            // Configuração física do PictureBox para manter proporções quadradas (1x1)
             picMapaAdmin.Size = new Size(150, 150);
             picMapaAdmin.SizeMode = PictureBoxSizeMode.Zoom;
             AplicarBordaArredondada(picMapaAdmin, 15);
 
-            // Desabilita o campo de texto para o admin não digitar caminhos inválidos na mão
+            // Bloqueia o campo de caminho da imagem para forçar o uso do OpenFileDialog ou Mapa Automático
             txtImagemPath.Enabled = false;
 
-            // Vincula o evento de seleção da Grid para atualizar o preview do mapa lateral
+            // Vincula os eventos das tabelas para gerenciar o preview do mapa em tempo real
             dgvViagens.SelectionChanged += dgvViagens_SelectionChanged;
+            dgvViagens.CellContentClick += dgvViagens_SelectionChanged; // Reaproveita o mesmo método de seleção
         }
 
         private void FormAdmin_Load(object sender, EventArgs e)
         {
             AplicarBordaArredondada(panelData, 20);
 
-            // Ajuste visual do DateTimePicker interno
+            // Ajuste e dimensionamento técnico do DateTimePicker customizado dentro do painel
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             dateTimePicker1.Location = new Point(-1, -1);
             dateTimePicker1.Width = panelData.Width + 6;
             dateTimePicker1.Height = panelData.Height + 6;
 
-            // Vincula o evento Leave nos componentes de rota para gerar o mapa automático
+            // =================================================================
+            // MAPEAMENTO DINÂMICO DE EVENTOS (LEAVE)
+            // =================================================================
+
+            // Dispara a geração automática do mapa quando o foco sai dos campos principais de rota
             txtOrigem.Leave += (s, ev) => ObterPreviaDoMapa();
             txtDestino.Leave += (s, ev) => ObterPreviaDoMapa();
 
+            // Garante o comportamento em sub-controles internos (como em custom controls com TextBoxes aninhadas)
             foreach (Control internalCtrl in txtOrigem.Controls)
                 internalCtrl.Leave += (s, ev) => ObterPreviaDoMapa();
 
             foreach (Control internalCtrl in txtDestino.Controls)
                 internalCtrl.Leave += (s, ev) => ObterPreviaDoMapa();
 
-            // Inicializa as tabelas de dados assim que o formulário abre
+            // Carga inicial dos dados no carregamento da tela
             CarregarGridViagensAdmin();
-            btnAtualizar_Click(this, EventArgs.Empty); // Carrega as reservas existentes
+            btnAtualizar_Click(this, EventArgs.Empty); // Atualiza e lista as reservas
             CarregarGridUsuarios();
         }
 
+        /// <summary>
+        /// Solicita à camada BLL a URL estática do mapa com base na Origem e Destino informados.
+        /// </summary>
         private void ObterPreviaDoMapa()
         {
-            string origen = txtOrigem.Text?.Trim();
+            string origem = txtOrigem.Text?.Trim();
             string destino = txtDestino.Text?.Trim();
 
+            // Se o admin selecionou um arquivo local manualmente, não sobrescreve com o mapa online
             if (!string.IsNullOrWhiteSpace(txtImagemPath.Text) && !txtImagemPath.Text.StartsWith("http"))
             {
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(origen) && !string.IsNullOrWhiteSpace(destino))
+            if (!string.IsNullOrWhiteSpace(origem) && !string.IsNullOrWhiteSpace(destino))
             {
                 try
                 {
-                    string urlMapa = _viagemBll.GerarUrlMapa(origen, destino);
+                    // Obtém a string de conexão/API gerada pelo backend
+                    string urlMapa = _viagemBll.GerarUrlMapa(origem, destino);
 
                     txtImagemPath.Text = urlMapa;
-                    LimparImagemPictureBox(); // Evita travas de memória
-                    picMapaAdmin.ImageLocation = urlMapa;
+                    LimparImagemPictureBox(); // Evita vazamentos e travas de memória de imagens anteriores
+                    picMapaAdmin.ImageLocation = urlMapa; // Carregamento assíncrono via Web URL
                 }
                 catch
                 {
@@ -101,6 +123,9 @@ namespace Nexo_App.UI
             }
         }
 
+        /// <summary>
+        /// Permite ao administrador selecionar uma imagem personalizada do disco rígido.
+        /// </summary>
         private void btnEscolherImagem_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -113,7 +138,8 @@ namespace Nexo_App.UI
                     txtImagemPath.Text = ofd.FileName;
                     LimparImagemPictureBox();
 
-                    // Carrega a imagem liberando o arquivo do disco imediatamente (evita erro ao deletar viagem)
+                    // CRUCIAL: Abre o arquivo através de um FileStream temporário e desvincula a imagem 
+                    // do arquivo em disco imediatamente após a conversão, permitindo exclusões ou edições futuras do arquivo.
                     using (var stream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
                     {
                         picMapaAdmin.Image = Image.FromStream(stream);
@@ -122,8 +148,12 @@ namespace Nexo_App.UI
             }
         }
 
+        /// <summary>
+        /// Processa a persistência da viagem (Insere um novo registro ou Altera o existente).
+        /// </summary>
         private void btnCriarViagem_Click(object sender, EventArgs e)
         {
+            // Validação simples de preenchimento obrigatório
             if (string.IsNullOrWhiteSpace(txtOrigem.Text) || string.IsNullOrWhiteSpace(txtDestino.Text) || string.IsNullOrWhiteSpace(txtPreco.Text))
             {
                 lblErroAdmin.Visible = true;
@@ -161,15 +191,14 @@ namespace Nexo_App.UI
                     _viagemBll.Alterar(viagemEmEdicao);
                     MessageBox.Show("Viagem atualizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // Restaura os controles e limpa a referência de edição
                     viagemEmEdicao = null;
                     btnCriarViagem.Text = "✔ Criar Viagem";
                     txtAssentos.Enabled = true;
                 }
 
-                // Limpa os controles da tela após salvar
+                // Reseta a interface do formulário e recarrega a tabela de viagens atualizada
                 LimparCampos();
-
-                // CRUCIAL: Atualiza a lista da Grid imediatamente após salvar/editar
                 CarregarGridViagensAdmin();
             }
             catch (Exception ex)
@@ -178,6 +207,9 @@ namespace Nexo_App.UI
             }
         }
 
+        /// <summary>
+        /// Limpa todos os campos de entrada de dados da interface.
+        /// </summary>
         private void LimparCampos()
         {
             txtOrigem.Text = "";
@@ -188,16 +220,22 @@ namespace Nexo_App.UI
             LimparImagemPictureBox();
         }
 
+        /// <summary>
+        /// Desvincula as imagens e executa o Dispose para evitar consumo desnecessário de memória RAM.
+        /// </summary>
         private void LimparImagemPictureBox()
         {
             if (picMapaAdmin.Image != null)
             {
-                picMapaAdmin.Image.Dispose(); // Libera os recursos da imagem anterior
+                picMapaAdmin.Image.Dispose(); // Libera handles gráficos do GDI+ do Windows
                 picMapaAdmin.Image = null;
             }
             picMapaAdmin.ImageLocation = null;
         }
 
+        /// <summary>
+        /// Carrega e exibe a lista completa de reservas ativas registradas no banco de dados.
+        /// </summary>
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             try
@@ -222,13 +260,22 @@ namespace Nexo_App.UI
             }
         }
 
+        /// <summary>
+        /// Encerra a sessão administrativa e retorna para a tela de login.
+        /// </summary>
         private void btnSair_Click(object sender, EventArgs e)
         {
+            // Limpa a credencial global
             Sessao.UsuarioLogado = null;
-            new FormLogin().Show();
+
+            // Fecha a tela atual. O Program.cs vai detectar que a sessão está nula 
+            // e jogará o usuário de volta para a tela de Login!
             this.Close();
         }
 
+        /// <summary>
+        /// Redefine a região geométrica de um controle genérico para aplicar bordas arredondadas com contorno.
+        /// </summary>
         private void AplicarBordaArredondada(Control ctrl, int raio)
         {
             ctrl.Paint += (sender, e) =>
@@ -245,6 +292,7 @@ namespace Nexo_App.UI
                 ctrl.Region = new Region(path);
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
+                // Desenha a linha externa de contorno (Preta, espessura de 2px)
                 using (Pen pen = new Pen(Color.Black, 2))
                 {
                     e.Graphics.DrawPath(pen, path);
@@ -252,6 +300,9 @@ namespace Nexo_App.UI
             };
         }
 
+        /// <summary>
+        /// Sobrecarga específica para arredondar botões (Modifica apenas a região de corte do clique).
+        /// </summary>
         private void AplicarBordaArredondada(Button btn, int raio)
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -263,6 +314,9 @@ namespace Nexo_App.UI
             btn.Region = new Region(path);
         }
 
+        /// <summary>
+        /// Carrega os registros de viagens cadastrados no Grid do Administrador.
+        /// </summary>
         private void CarregarGridViagensAdmin()
         {
             dgvViagens.Rows.Clear();
@@ -275,32 +329,39 @@ namespace Nexo_App.UI
                     v.NmOrigem,
                     v.NmDestino,
                     v.DtViagem.ToString("dd/MM/yyyy HH:mm"),
-                    v.VlPreco.ToString("C2"),
+                    v.VlPreco.ToString("C2"), // Formatação de moeda regional (R$)
                     v.QtLivres
                 );
 
+                // Vincula o objeto de modelo completo à linha correspondente no Grid (facilita recuperações futuras)
                 dgvViagens.Rows[rowIndex].Tag = v;
             }
         }
 
+        /// <summary>
+        /// Atualiza o preview lateral da imagem/mapa da viagem sempre que o usuário clica ou navega pela Grid de Viagens.
+        /// </summary>
         private void dgvViagens_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvViagens.SelectedRows.Count > 0)
             {
+                // Extrai o objeto mapeado anteriormente na propriedade Tag
                 Viagem viagemSelecionada = dgvViagens.SelectedRows[0].Tag as Viagem;
 
                 if (viagemSelecionada != null && !string.IsNullOrWhiteSpace(viagemSelecionada.DsImagem))
                 {
                     try
                     {
+                        LimparImagemPictureBox();
+
                         if (viagemSelecionada.DsImagem.StartsWith("http"))
                         {
-                            LimparImagemPictureBox();
+                            // Carrega remotamente caso seja uma URL estática de mapa
                             picMapaAdmin1.ImageLocation = viagemSelecionada.DsImagem;
                         }
                         else
                         {
-                            LimparImagemPictureBox();
+                            // Carrega localmente por Stream seguro se o arquivo existir em disco
                             if (File.Exists(viagemSelecionada.DsImagem))
                             {
                                 using (var stream = new FileStream(viagemSelecionada.DsImagem, FileMode.Open, FileAccess.Read))
@@ -322,112 +383,85 @@ namespace Nexo_App.UI
             }
         }
 
+        /// <summary>
+        /// Abre a janela modal externa enviando o objeto da linha selecionada para edição assistida.
+        /// </summary>
         private void EditTrip_Click_1(object sender, EventArgs e)
         {
             if (dgvViagens.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Selecione uma viagem na tabela.");
+                MessageBox.Show("Selecione uma viagem na tabela.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Pega a viagem da linha selecionada
             Viagem v = (Viagem)dgvViagens.SelectedRows[0].Tag;
 
-            // Abre o formulário de edição
             using (var formEdit = new FormEditarViagem(v))
             {
                 if (formEdit.ShowDialog() == DialogResult.OK)
                 {
-                    // Salva no banco através da BLL
+                    // Se o retorno do modal for OK, salva as mudanças no banco e atualiza a tela principal
                     _viagemBll.Alterar(formEdit.ViagemParaEditar);
-                    MessageBox.Show("Viagem atualizada com sucesso!");
-
-                    // Atualiza a grid
+                    MessageBox.Show("Viagem atualizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CarregarGridViagensAdmin();
                 }
             }
         }
 
+        /// <summary>
+        /// Remove uma viagem do banco de dados após a confirmação expressa do administrador.
+        /// </summary>
         private void DelTrip_Click_1(object sender, EventArgs e)
         {
             if (dgvViagens.SelectedRows.Count == 0) return;
             Viagem v = (Viagem)dgvViagens.SelectedRows[0].Tag;
 
-            if (MessageBox.Show("Deseja excluir?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Deseja realmente excluir esta viagem?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _viagemBll.Excluir(v.CdViagem);
                 CarregarGridViagensAdmin();
             }
         }
 
+        /// <summary>
+        /// Abre a tela de gerenciamento visual do mapa de assentos para a viagem selecionada.
+        /// </summary>
         private void SeeTrip_Click_1(object sender, EventArgs e)
         {
             if (dgvViagens.SelectedRows.Count == 0) return;
 
+            // Transfere o objeto selecionado globalmente através da classe de Sessão estática
             Sessao.ViagemSelecionada = (Viagem)dgvViagens.SelectedRows[0].Tag;
             new FormAssentos().ShowDialog();
         }
 
-        private void dgvViagens_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvViagens.SelectedRows.Count > 0)
-            {
-                Viagem viagemSelecionada = dgvViagens.SelectedRows[0].Tag as Viagem;
-
-                if (viagemSelecionada != null && !string.IsNullOrWhiteSpace(viagemSelecionada.DsImagem))
-                {
-                    try
-                    {
-                        if (viagemSelecionada.DsImagem.StartsWith("http"))
-                        {
-                            LimparImagemPictureBox();
-                            picMapaAdmin1.ImageLocation = viagemSelecionada.DsImagem;
-                        }
-                        else
-                        {
-                            LimparImagemPictureBox();
-                            if (File.Exists(viagemSelecionada.DsImagem))
-                            {
-                                using (var stream = new FileStream(viagemSelecionada.DsImagem, FileMode.Open, FileAccess.Read))
-                                {
-                                    picMapaAdmin1.Image = Image.FromStream(stream);
-                                }
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        LimparImagemPictureBox();
-                    }
-                }
-                else
-                {
-                    LimparImagemPictureBox();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Carrega a tabela informativa contendo a lista completa de usuários do sistema.
+        /// </summary>
         private void CarregarGridUsuarios()
         {
-            dgvUsuarios.Rows.Clear(); // Limpa para evitar duplicidade
+            dgvUsuarios.Rows.Clear();
             var listaUsuarios = _usuarioBLL.ListarTodos();
 
             foreach (var u in listaUsuarios)
             {
-                // A ordem aqui DEVE ser a mesma ordem das colunas no grid
                 int index = dgvUsuarios.Rows.Add(
-                    u.NmUsuario,    // Coluna 1
-                    u.NmEmail,      // Coluna 2
-                    u.NmTelefone,   // Coluna 3
-                    u.CdCep,        // Coluna 4
-                    u.NmCidade,     // Coluna 5
-                    u.IcTipo        // Coluna 6
+                    u.NmUsuario,
+                    u.NmEmail,
+                    u.NmTelefone,
+                    u.CdCep,
+                    u.NmCidade,
+                    u.IcTipo
                 );
 
-                dgvUsuarios.Rows[index].Tag = u; // Mantém o objeto na linha
+                // Armazena a referência completa do usuário na propriedade Tag do registro da linha
+                dgvUsuarios.Rows[index].Tag = u;
             }
         }
 
+        /// <summary>
+        /// Abre o modal de edição contendo os dados do usuário selecionado no Grid.
+        /// </summary>
         private void EditUser_Click(object sender, EventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count == 0) return;
@@ -438,13 +472,15 @@ namespace Nexo_App.UI
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // O formulário de edição devolve o objeto 'u' já com as alterações
                     _usuarioBLL.AlterarUsuario(form.UsuarioEditado);
                     CarregarGridUsuarios();
                 }
             }
         }
 
+        /// <summary>
+        /// Executa a rotina de exclusão física do cadastro de um usuário selecionado.
+        /// </summary>
         private void DelUser_Click(object sender, EventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count == 0) return;
@@ -458,15 +494,18 @@ namespace Nexo_App.UI
                 {
                     _usuarioBLL.Excluir(u.CdUsuario);
                     CarregarGridUsuarios();
-                    MessageBox.Show("Usuário excluído com sucesso!");
+                    MessageBox.Show("Usuário excluído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao excluir: " + ex.Message);
+                    MessageBox.Show("Erro ao excluir: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+        /// <summary>
+        /// Abre um painel de mensagens rápido detalhando as informações completas e de endereço do usuário.
+        /// </summary>
         private void SeeUser_Click(object sender, EventArgs e)
         {
             if (dgvUsuarios.SelectedRows.Count == 0) return;

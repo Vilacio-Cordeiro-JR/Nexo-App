@@ -11,6 +11,10 @@ using Nexo_App.Models;
 
 namespace Nexo_App.BLL
 {
+    /// <summary>
+    /// Classe estática responsável por manter o contexto global da sessão do usuário durante o ciclo de vida da aplicação.
+    /// Permite acesso centralizado ao usuário logado, viagem selecionada e assentos escolhidos.
+    /// </summary>
     public static class Sessao
     {
         public static Usuario UsuarioLogado { get; set; }
@@ -18,10 +22,20 @@ namespace Nexo_App.BLL
         public static List<Assento> AssentosSelecionados { get; set; } = new List<Assento>();
     }
 
+    /// <summary>
+    /// Camada de regras de negócio para operações relacionadas ao usuário.
+    /// Centraliza validações, autenticação e orquestração de persistência.
+    /// </summary>
     public class UsuarioBLL
     {
         private readonly UsuarioDAL _dal = new UsuarioDAL();
 
+        /// <summary>
+        /// Gera o hash SHA256 da senha para garantir segurança no armazenamento e comparação.
+        /// Decisão: SHA256 é utilizado para evitar persistência de senhas em texto puro, mitigando riscos de vazamento.
+        /// </summary>
+        /// <param name="senha">Senha em texto puro.</param>
+        /// <returns>Hash SHA256 em formato hexadecimal.</returns>
         public static string GerarHash(string senha)
         {
             using (var sha = SHA256.Create())
@@ -33,10 +47,24 @@ namespace Nexo_App.BLL
             }
         }
 
+        /// <summary>
+        /// Realiza o cadastro de um novo usuário após validações de negócio e formato.
+        /// </summary>
+        /// <param name="nome">Nome do usuário.</param>
+        /// <param name="email">E-mail do usuário.</param>
+        /// <param name="senha">Senha em texto puro.</param>
+        /// <param name="telefone">Telefone no formato (99) 99999-9999.</param>
+        /// <param name="cep">CEP no formato 00000-000.</param>
+        /// <param name="rua">Nome da rua.</param>
+        /// <param name="bairro">Nome do bairro.</param>
+        /// <param name="cidade">Nome da cidade.</param>
+        /// <param name="estado">Sigla do estado.</param>
+        /// <exception cref="Exception">Lança exceção se qualquer validação falhar.</exception>
         public void Cadastrar(string nome, string email, string senha,
                               string telefone, string cep, string rua,
                               string bairro, string cidade, string estado)
         {
+            // Validação de presença e formato usando Regex para garantir integridade dos dados.
             if (string.IsNullOrWhiteSpace(nome))
                 throw new Exception("Nome obrigatório.");
 
@@ -71,6 +99,13 @@ namespace Nexo_App.BLL
             });
         }
 
+        /// <summary>
+        /// Realiza a autenticação do usuário utilizando e-mail e senha.
+        /// </summary>
+        /// <param name="email">E-mail do usuário.</param>
+        /// <param name="senha">Senha em texto puro.</param>
+        /// <returns>Instância de Usuario autenticado.</returns>
+        /// <exception cref="Exception">Lança exceção se as credenciais forem inválidas.</exception>
         public Usuario Login(string email, string senha)
         {
             var usuario = _dal.BuscarPorLogin(email.Trim().ToLower(), GerarHash(senha));
@@ -79,12 +114,17 @@ namespace Nexo_App.BLL
             return usuario;
         }
 
+        /// <summary>
+        /// Lista todos os usuários cadastrados no sistema.
+        /// </summary>
+        /// <returns>Lista de usuários.</returns>
         public List<Usuario> ListarTodos()
         {
             var lista = new List<Usuario>();
-            // 1. Adicione as colunas que faltam no seu SELECT
+            // NOTE: O SELECT inclui todas as colunas relevantes para exibição e edição.
             string sql = "SELECT cd_usuario, nm_usuario, nm_email, nm_telefone, ic_tipo, nm_rua, nm_bairro, nm_cidade, sg_estado, cd_cep FROM Usuario";
 
+            // Decisão: Uso do bloco 'using' para garantir liberação de recursos e evitar leaks de conexão.
             using (var con = Conexao.Abrir())
             using (var cmd = new SqlCommand(sql, con))
             using (var r = cmd.ExecuteReader())
@@ -98,7 +138,6 @@ namespace Nexo_App.BLL
                         NmEmail = (string)r["nm_email"],
                         NmTelefone = (string)r["nm_telefone"],
                         IcTipo = (string)r["ic_tipo"],
-                        // 2. Mapeie as novas colunas para as propriedades do objeto
                         NmRua = r["nm_rua"].ToString(),
                         NmBairro = r["nm_bairro"].ToString(),
                         NmCidade = r["nm_cidade"].ToString(),
@@ -110,43 +149,62 @@ namespace Nexo_App.BLL
             return lista;
         }
 
+        /// <summary>
+        /// Altera os dados de um usuário existente após validações.
+        /// </summary>
+        /// <param name="u">Objeto usuário com dados atualizados.</param>
+        /// <exception cref="Exception">Lança exceção se o e-mail for inválido.</exception>
         public void AlterarUsuario(Usuario u)
         {
-            // Adicione aqui suas validações (ex: senha não pode ser vazia, email deve ser válido)
+            // Validação de negócio: e-mail não pode ser vazio.
             if (string.IsNullOrWhiteSpace(u.NmEmail))
                 throw new Exception("O e-mail é obrigatório.");
 
             _dal.Alterar(u); // Chama o método na DAL que faz o UPDATE geral
         }
 
+        /// <summary>
+        /// Exclui um usuário do sistema.
+        /// </summary>
+        /// <param name="cdUsuario">Código do usuário.</param>
         public void Excluir(int cdUsuario)
         {
-            // Adicione validações extras se necessário (ex: não excluir o próprio admin logado)
+            // TODO: Adicionar validação para impedir exclusão do próprio admin logado, se necessário.
             _dal.Excluir(cdUsuario);
         }
     }
 
+    /// <summary>
+    /// Camada de regras de negócio para operações relacionadas a viagens.
+    /// Centraliza validações, integração com MapQuest e orquestração de persistência.
+    /// </summary>
     public class ViagemBLL
     {
         private readonly ViagemAssentoDAL _dal = new ViagemAssentoDAL();
 
-        // Cole a sua chave do MapQuest aqui dentro das aspas
+        // Chave da API MapQuest utilizada para geração de mapas estáticos.
         private const string API_KEY = "CHjxEPuEeQREnmNAmM6fxNDxUlutp8uT";
 
         /// <summary>
-        /// Busca todas as viagens cadastradas (Sem filtros) para alimentar a Grid do Admin
+        /// Busca todas as viagens cadastradas (sem filtros) para alimentar a Grid do Admin.
         /// </summary>
+        /// <returns>Lista de viagens.</returns>
         public List<Viagem> ListarTodas()
         {
             return _dal.ListarTodas(); // Agora mapeia o histórico completo sem sumir com registros!
         }
 
         /// <summary>
-        /// Lista viagens aplicando filtros opcionais e conferindo o horário da aplicação
+        /// Lista viagens aplicando filtros opcionais e conferindo o horário da aplicação.
         /// </summary>
+        /// <param name="origem">Origem da viagem (opcional).</param>
+        /// <param name="destino">Destino da viagem (opcional).</param>
+        /// <param name="data">Data da viagem (opcional).</param>
+        /// <returns>Lista de viagens disponíveis.</returns>
+        /// <exception cref="Exception">Lança exceção se origem e destino forem iguais.</exception>
         public List<Viagem> ListarDisponiveis(string origem = null, string destino = null, DateTime? data = null)
         {
-            // Regra: Se o usuário digitar campos idênticos na busca, barramos antes do banco
+            // Regra de negócio: impedir busca com origem e destino idênticos.
             if (!string.IsNullOrWhiteSpace(origem) && !string.IsNullOrWhiteSpace(destino))
             {
                 if (origem.Trim().ToLower() == destino.Trim().ToLower())
@@ -157,14 +215,18 @@ namespace Nexo_App.BLL
         }
 
         /// <summary>
-        /// Gera a URL do mapa estático baseado na origem e destino informados
+        /// Gera a URL do mapa estático baseado na origem e destino informados.
+        /// Decisão: A geração da URL é feita na BLL para centralizar regras de integração externa.
         /// </summary>
+        /// <param name="origem">Cidade de origem.</param>
+        /// <param name="destino">Cidade de destino.</param>
+        /// <returns>URL do mapa estático do MapQuest.</returns>
         public string GerarUrlMapa(string origem, string destino)
         {
             if (string.IsNullOrWhiteSpace(origem) || string.IsNullOrWhiteSpace(destino))
                 return string.Empty;
 
-            // Evita problemas com espaços, acentos e caracteres especiais na URL
+            // Decisão: UrlEncode para evitar problemas com caracteres especiais.
             string origemEscapada = WebUtility.UrlEncode(origem);
             string destinoEscapado = WebUtility.UrlEncode(destino);
 
@@ -178,12 +240,12 @@ namespace Nexo_App.BLL
         }
 
         /// <summary>
-        /// Encapsula a criação recebendo o objeto mapeado direto da interface (FormAdmin)
+        /// Encapsula a criação recebendo o objeto mapeado direto da interface (FormAdmin).
         /// </summary>
+        /// <param name="novaViagem">Objeto viagem preenchido.</param>
         public void Inserir(Viagem novaViagem)
         {
-            // Como a tela de criação envia a quantidade de assentos padrão fixada em 40,
-            // validamos e repassamos para a regra de negócio interna do sistema.
+            // Decisão: Quantidade de assentos padrão fixada em 40 para padronização operacional.
             string qtAssentosPadrao = "40";
 
             CriarViagem(
@@ -197,18 +259,24 @@ namespace Nexo_App.BLL
         }
 
         /// <summary>
-        /// Valida as regras de negócio e insere a viagem com contingência inteligente de imagens
+        /// Valida as regras de negócio e insere a viagem com contingência inteligente de imagens.
         /// </summary>
+        /// <param name="origem">Origem da viagem.</param>
+        /// <param name="destino">Destino da viagem.</param>
+        /// <param name="dataHora">Data e hora da viagem.</param>
+        /// <param name="precoStr">Preço em string.</param>
+        /// <param name="qtAssentosStr">Quantidade de assentos em string.</param>
+        /// <param name="imagemCaminhoOuUrl">Caminho local ou URL da imagem.</param>
+        /// <exception cref="Exception">Lança exceção se qualquer validação falhar.</exception>
         public void CriarViagem(string origem, string destino, DateTime dataHora, string precoStr, string qtAssentosStr, string imagemCaminhoOuUrl)
         {
-            // 1. Validações básicas de presença de dados
+            // Validações de presença, formato e regras de negócio.
             if (string.IsNullOrWhiteSpace(origem) || string.IsNullOrWhiteSpace(destino))
                 throw new Exception("Origem e destino são obrigatórios.");
 
             if (origem.Trim().ToLower() == destino.Trim().ToLower())
                 throw new Exception("Origem e destino não podem ser iguais.");
 
-            // 2. Validações numéricas e de negócio com regras estritas (Preço e Assentos)
             if (!decimal.TryParse(precoStr, out decimal preco) || preco <= 0)
                 throw new Exception("Preço inválido. Digite um valor maior que zero.");
 
@@ -218,7 +286,7 @@ namespace Nexo_App.BLL
             if (dataHora <= DateTime.Now)
                 throw new Exception("A data da viagem deve ser futura.");
 
-            // 3. Lógica de contingência da imagem (Ambiguidade API vs Upload Manual)
+            // Decisão: Contingência para imagens locais ou URLs externas.
             string caminhoFinalParaBanco = imagemCaminhoOuUrl;
 
             // Se for um caminho de arquivo físico local do Windows (não começa com HTTP/HTTPS)
@@ -246,7 +314,7 @@ namespace Nexo_App.BLL
                 }
             }
 
-            // 4. Instancia o modelo pronto com os dados unificados
+            // Instancia o modelo pronto com os dados unificados
             Viagem novaViagem = new Viagem
             {
                 NmOrigem = origem.Trim(),
@@ -256,16 +324,18 @@ namespace Nexo_App.BLL
                 DsImagem = caminhoFinalParaBanco
             };
 
-            // 5. Envia para a DAL salvar as informações e gerar os assentos no banco
+            // Decisão: A DAL é responsável por inserir a viagem e gerar os assentos em transação.
             _dal.Inserir(novaViagem, qtAssentos);
         }
 
         /// <summary>
-        /// Método chamado pelo FormAdmin para salvar as alterações da viagem editada
+        /// Método chamado pelo FormAdmin para salvar as alterações da viagem editada.
         /// </summary>
+        /// <param name="v">Viagem editada.</param>
+        /// <exception cref="Exception">Lança exceção se dados obrigatórios forem inválidos.</exception>
         public void Alterar(Viagem v)
         {
-            // Executa validações de consistência antes de persistir
+            // Validações de consistência antes de persistir.
             if (string.IsNullOrWhiteSpace(v.NmOrigem) || string.IsNullOrWhiteSpace(v.NmDestino))
                 throw new Exception("Origem e Destino são campos obrigatórios.");
 
@@ -276,23 +346,35 @@ namespace Nexo_App.BLL
         }
 
         /// <summary>
-        /// Método chamado pelo FormAdmin para remover registros físicos
+        /// Método chamado pelo FormAdmin para remover registros físicos.
         /// </summary>
+        /// <param name="cdViagem">Código da viagem.</param>
+        /// <exception cref="Exception">Lança exceção se o código for inválido.</exception>
         public void Excluir(int cdViagem)
         {
             if (cdViagem <= 0)
                 throw new Exception("Código de identificação de viagem inválido.");
 
-            // DICA DE OURO: Como seu banco possui chaves estrangeiras, a deleção dentro da ViagemAssentoDAL 
-            // deve limpar primeiro as dependências na tabela de assentos antes de dar o DELETE na tabela de viagens!
+            // NOTE: A exclusão em cascata é tratada na DAL, respeitando integridade referencial.
             _dal.Excluir(cdViagem);
         }
     }
 
+    /// <summary>
+    /// Camada de regras de negócio para operações de reserva de assentos.
+    /// Centraliza validações e orquestração de persistência transacional.
+    /// </summary>
     public class ReservaBLL
     {
         private readonly ReservaDAL _dal = new ReservaDAL();
 
+        /// <summary>
+        /// Confirma a reserva de assentos para um usuário em uma viagem.
+        /// </summary>
+        /// <param name="cdUsuario">Código do usuário.</param>
+        /// <param name="cdViagem">Código da viagem.</param>
+        /// <param name="assentos">Lista de assentos selecionados.</param>
+        /// <exception cref="Exception">Lança exceção se nenhum assento for selecionado.</exception>
         public void ConfirmarReserva(int cdUsuario, int cdViagem, List<Assento> assentos)
         {
             if (assentos == null || assentos.Count == 0)
@@ -301,9 +383,14 @@ namespace Nexo_App.BLL
             var ids = new List<int>();
             foreach (var a in assentos) ids.Add(a.CdAssento);
 
+            // Decisão: A DAL executa a reserva e marcação dos assentos em transação para evitar overbooking.
             _dal.Inserir(cdUsuario, cdViagem, ids);
         }
 
+        /// <summary>
+        /// Lista todas as reservas do sistema.
+        /// </summary>
+        /// <returns>Lista de reservas.</returns>
         public List<Reserva> ListarTodas() => _dal.ListarTodas();
     }
 }

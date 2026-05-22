@@ -1,98 +1,121 @@
-﻿using Nexo_App.BLL;
-using System;
+﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Nexo_App.BLL;
 
 namespace Nexo_App.UI
 {
+    /// <summary>
+    /// Formulário de autenticação principal do sistema.
+    /// Gerencia o acesso de usuários comuns, administradores e redirecionamentos.
+    /// </summary>
     public partial class FormLogin : Form
     {
+        /// <summary>
+        /// Construtor do formulário. Inicializa os componentes e define os estilos padrão dos botões.
+        /// </summary>
         public FormLogin()
         {
             InitializeComponent();
-            // Mata o processo do Windows se fechar no "X" antes de logar
-            this.FormClosed += (s, e) => Application.Exit();
 
+            // CORREÇÃO: A linha "this.FormClosed += ..." foi removida daqui. 
+            // Agora o formulário pode se fechar livremente para passar o controle ao Program.cs.
+
+            // Configuração de estilo flat para o botão de cadastro
             btnCadastrar.FlatStyle = FlatStyle.Flat;
             btnCadastrar.FlatAppearance.BorderSize = 0;
             btnCadastrar.UseVisualStyleBackColor = false;
         }
 
+        /// <summary>
+        /// Evento executado no carregamento do formulário. Aplica o visual arredondado aos botões.
+        /// </summary>
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            AplicarBordaArredondada(btnEntrar, 30);
+            AplicarBordaArredondada(btnCadastrar, 30);
+            AplicarBordaArredondada(btnAcessoAdmin, 30);
+        }
+
+        /// <summary>
+        /// Processa a tentativa de login comum autenticando o usuário e direcionando com base em seu perfil.
+        /// </summary>
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(roundedTextBox2.Text) || string.IsNullOrWhiteSpace(roundedTextBox1.Text))
+                {
+                    throw new Exception("Por favor, preencha o e-mail e a senha para continuar.");
+                }
+
                 var bll = new UsuarioBLL();
                 var usuario = bll.Login(roundedTextBox2.Text, roundedTextBox1.Text);
 
+                // Define globalmente o usuário ativo
                 Sessao.UsuarioLogado = usuario;
 
-                if (usuario.IcTipo == "ADMIN")
-                {
-                    var admin = new FormAdmin();
-                    admin.FormClosed += (s, ev) => Application.Exit();
-                    admin.Show();
-                    this.Hide(); // Esconde o login apenas se o sucesso for confirmado
-                }
-                else
-                {
-                    var home = new FormHome();
-                    home.FormClosed += (s, ev) => Application.Exit();
-                    home.Show();
-                    this.Hide(); // Esconde o login apenas se o sucesso for confirmado
-                }
+                // Transiciona o controle fechando o login
+                this.Close();
             }
             catch (Exception ex)
             {
                 lblErro.Text = ex.Message;
                 lblErro.Visible = true;
             }
-        } 
+        }
 
+        /// <summary>
+        /// Abre a tela de cadastro de novos usuários de forma modal.
+        /// </summary>
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             var cadastro = new FormCadastro();
             this.Hide();
-            cadastro.ShowDialog(); // Abre por cima
-            this.Show(); // Volta o login quando fechar o cadastro;
-        }
-        private void AplicarBordaArredondada(Button btn, int raio)
-        {
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddArc(0, 0, raio, raio, 180, 90);
-            path.AddArc(btn.Width - raio, 0, raio, raio, 270, 90);
-            path.AddArc(btn.Width - raio, btn.Height - raio, raio, raio, 0, 90);
-            path.AddArc(0, btn.Height - raio, raio, raio, 90, 90);
-            path.CloseAllFigures();
-            btn.Region = new Region(path);
+
+            cadastro.ShowDialog(); // Abre em modo de diálogo bloqueante (por cima)
+
+            this.Show(); // Retorna a visibilidade deste login assim que a tela de cadastro for fechada
         }
 
-    
-
-
-
+        /// <summary>
+        /// Abre a tela secundária de autenticação restrita para administradores.
+        /// </summary>
         private void btnAcessoAdmin_Click(object sender, EventArgs e)
         {
-            var loginAdmin = new FormLoginAdmin();
-
-            // 🔥 A MÁGICA: Se o LoginAdmin abrir com sucesso o painel de Admin, ele vai esconder essa tela.
-            // Nós só queremos que o Login principal reapareça se o usuário CLICAR EM VOLTAR (fechar a tela de sub-login).
-            this.Hide();
-
-            loginAdmin.ShowDialog();
-
-            // Se o usuário fechou a tela de sub-login sem logar (clicando em Voltar), e o Admin NÃO foi aberto:
-            if (Sessao.UsuarioLogado == null)
+            using (var loginAdmin = new FormLoginAdmin())
             {
-                this.Show(); // Mostra o login comum de volta
+                this.Hide(); // Esconde temporariamente para dar foco ao sub-login modal
+                loginAdmin.ShowDialog();
+
+                // Se o sub-login guardou um usuário na sessão, fecha este FormLogin também!
+                if (Sessao.UsuarioLogado != null)
+                {
+                    this.Close(); // Fecha o login comum para o Program.cs assumir o controle
+                }
+                else
+                {
+                    this.Show(); // Se cancelou o sub-login, mostra o login comum de volta
+                }
             }
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Altera a região geométrica do botão para simular um acabamento arredondado moderno.
+        /// </summary>
+        private void AplicarBordaArredondada(Button btn, int raio)
         {
-            AplicarBordaArredondada(btnEntrar, 30);
-            AplicarBordaArredondada(btnCadastrar, 30);
-            AplicarBordaArredondada(btnAcessoAdmin, 30);
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                path.AddArc(0, 0, raio, raio, 180, 90);
+                path.AddArc(btn.Width - raio, 0, raio, raio, 270, 90);
+                path.AddArc(btn.Width - raio, btn.Height - raio, raio, raio, 0, 90);
+                path.AddArc(0, btn.Height - raio, raio, raio, 90, 90);
+                path.CloseAllFigures();
+
+                btn.Region = new Region(path);
+            }
         }
     }
 }

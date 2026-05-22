@@ -6,11 +6,17 @@ using Nexo_App.Models;
 
 namespace Nexo_App.DAL
 {
+    /// <summary>
+    /// Data Access Layer responsável por todas as operações de persistência relacionadas a Viagem e Assento.
+    /// Centraliza SELECTs, INSERTs, UPDATEs e DELETEs, sempre utilizando padrões de transação e gerenciamento seguro de conexões.
+    /// </summary>
     public class ViagemAssentoDAL
     {
         /// <summary>
-        /// LISTAR TODAS: Retorna o histórico completo sem travas de data ou lotação. Perfeito para o Admin.
+        /// Retorna o histórico completo de viagens, sem filtros de data ou lotação.
+        /// Decisão: Ideal para uso administrativo, permitindo visão total do sistema.
         /// </summary>
+        /// <returns>Lista de todas as viagens cadastradas.</returns>
         public List<Viagem> ListarTodas()
         {
             var lista = new List<Viagem>();
@@ -28,6 +34,7 @@ namespace Nexo_App.DAL
                 GROUP BY v.cd_viagem, v.nm_origem, v.nm_destino, v.dt_viagem, v.vl_preco, v.ds_imagem
                 ORDER BY v.dt_viagem DESC"; // Mais recentes primeiro no painel
 
+            // Decisão: Uso do bloco 'using' para garantir liberação de recursos e evitar leaks de conexão.
             using (var con = Conexao.Abrir())
             using (var cmd = new SqlCommand(sql, con))
             using (var r = cmd.ExecuteReader())
@@ -50,8 +57,13 @@ namespace Nexo_App.DAL
         }
 
         /// <summary>
-        /// LISTAR DISPONÍVEIS: Filtrado para a busca do cliente final na rodoviária.
+        /// Lista viagens disponíveis para o cliente final, aplicando filtros opcionais.
+        /// Decisão: Só retorna viagens futuras e com assentos livres.
         /// </summary>
+        /// <param name="origem">Origem (opcional).</param>
+        /// <param name="destino">Destino (opcional).</param>
+        /// <param name="data">Data (opcional).</param>
+        /// <returns>Lista de viagens disponíveis.</returns>
         public List<Viagem> ListarDisponiveis(string origem = null, string destino = null, DateTime? data = null)
         {
             var lista = new List<Viagem>();
@@ -117,8 +129,11 @@ namespace Nexo_App.DAL
         }
 
         /// <summary>
-        /// INSERIR (CREATE): Salva a viagem e gera os assentos sob segurança de uma Transação.
+        /// Insere uma nova viagem e gera automaticamente os assentos, tudo sob proteção de transação.
+        /// Decisão: Uso de transação garante atomicidade e previne inconsistências em caso de falha.
         /// </summary>
+        /// <param name="v">Viagem a ser inserida.</param>
+        /// <param name="qtAssentos">Quantidade de assentos a serem gerados.</param>
         public void Inserir(Viagem v, int qtAssentos)
         {
             string sqlViagem = @"
@@ -149,6 +164,7 @@ namespace Nexo_App.DAL
                         cmdAssento.Parameters.Add("@num", SqlDbType.Int);
                         cmdAssento.Parameters.AddWithValue("@cd_viagem", cdViagem);
 
+                        // Decisão: Geração automática dos assentos, garantindo padronização e integridade.
                         for (int i = 1; i <= qtAssentos; i++)
                         {
                             cmdAssento.Parameters["@num"].Value = i;
@@ -167,8 +183,9 @@ namespace Nexo_App.DAL
         }
 
         /// <summary>
-        /// ALTERAR (UPDATE): Atualiza os dados cadastrais da rota.
+        /// Atualiza os dados cadastrais de uma viagem.
         /// </summary>
+        /// <param name="v">Viagem com dados atualizados.</param>
         public void Alterar(Viagem v)
         {
             string sql = @"
@@ -195,8 +212,10 @@ namespace Nexo_App.DAL
         }
 
         /// <summary>
-        /// EXCLUIR (DELETE): Exclui assentos e viagem em cascata protegidos por transação.
+        /// Exclui uma viagem e todos os assentos relacionados, protegido por transação.
+        /// Decisão: Garante integridade referencial e atomicidade da operação.
         /// </summary>
+        /// <param name="cdViagem">Código da viagem a ser excluída.</param>
         public void Excluir(int cdViagem)
         {
             using (var con = Conexao.Abrir())
@@ -204,6 +223,24 @@ namespace Nexo_App.DAL
             {
                 try
                 {
+                    // 1. Excluir associações de assentos em reservas existentes
+                    string sqlReservaAssento = @"DELETE FROM ReservaAssento WHERE cd_assento IN 
+                                        (SELECT cd_assento FROM Assento WHERE cd_viagem = @id)";
+                    using (var cmd = new SqlCommand(sqlReservaAssento, con, transacao))
+                    {
+                        cmd.Parameters.AddWithValue("@id", cdViagem);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // 2. Excluir reservas associadas a esta viagem
+                    string sqlReserva = "DELETE FROM Reserva WHERE cd_viagem = @id";
+                    using (var cmd = new SqlCommand(sqlReserva, con, transacao))
+                    {
+                        cmd.Parameters.AddWithValue("@id", cdViagem);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // 3. Excluir os assentos da viagem
                     string sqlAssentos = "DELETE FROM Assento WHERE cd_viagem = @id";
                     using (var cmd = new SqlCommand(sqlAssentos, con, transacao))
                     {
@@ -211,6 +248,7 @@ namespace Nexo_App.DAL
                         cmd.ExecuteNonQuery();
                     }
 
+                    // 4. Excluir a viagem
                     string sqlViagem = "DELETE FROM Viagem WHERE cd_viagem = @id";
                     using (var cmd = new SqlCommand(sqlViagem, con, transacao))
                     {
@@ -218,21 +256,27 @@ namespace Nexo_App.DAL
                         cmd.ExecuteNonQuery();
                     }
 
-                    transacao.Commit();
+                    transacao.Commit(); // Confirma a exclusão de tudo em cascata
                 }
                 catch
                 {
-                    transacao.Rollback();
+                    transacao.Rollback(); // Se algo falhar, nada é excluído
                     throw;
                 }
             }
         }
 
         /// <summary>
-        /// Classe separada corretamente para evitar problemas de escopo no projeto
+        /// Classe interna responsável por operações específicas de Assento.
+        /// Mantida separada para evitar problemas de escopo e facilitar manutenção.
         /// </summary>
         public class AssentoDAL
         {
+            /// <summary>
+            /// Lista todos os assentos de uma viagem.
+            /// </summary>
+            /// <param name="cdViagem">Código da viagem.</param>
+            /// <returns>Lista de assentos.</returns>
             public List<Assento> ListarPorViagem(int cdViagem)
             {
                 var lista = new List<Assento>();
@@ -263,6 +307,10 @@ namespace Nexo_App.DAL
                 return lista;
             }
 
+            /// <summary>
+            /// Marca um assento como ocupado.
+            /// </summary>
+            /// <param name="cdAssento">Código do assento.</param>
             public void MarcarOcupado(int cdAssento)
             {
                 string sql = "UPDATE Assento SET ic_status = 'OCUPADO' WHERE cd_assento = @cd_assento";

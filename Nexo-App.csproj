@@ -166,6 +166,7 @@
     <EmbeddedResource Include="UI\FormLoginAdmin.resx">
       <DependentUpon>FormLoginAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Nexo_App_SAD_Arquitetura.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

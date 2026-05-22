@@ -6,11 +6,18 @@ using System.Windows.Forms;
 
 namespace Nexo_App.UI
 {
+    /// <summary>
+    /// Formulário de fechamento de pedido e resumo de transação.
+    /// Consolida as informações da viagem selecionada, os assentos reservados e realiza 
+    /// a computação dos valores financeiros antes da persistência final da reserva.
+    /// </summary>
     public partial class FormConfirmacao : Form
     {
         public FormConfirmacao()
         {
             InitializeComponent();
+
+            // Padronização visual da identidade do software aplicando cantos arredondados nos containers e botões
             AplicarBordaArredondada(panelResumo, 15);
             AplicarBordaArredondada(panel1, 15);
             AplicarBordaArredondada(panel2, 15);
@@ -18,28 +25,34 @@ namespace Nexo_App.UI
             AplicarBordaArredondada(btnVoltar, 15);
         }
 
+        /// <summary>
+        /// Executa procedimentos de validação de estado e preenchimento de metadados 
+        /// financeiros e textuais assim que a janela é carregada em memória.
+        /// </summary>
         private void FormConfirmacao_Load(object sender, EventArgs e)
         {
-            // Validação de segurança defensiva: evita que o app quebre se a sessão sumir
+            // VALIDAÇÃO DEFENSIVA DE SESSÃO
             if (Sessao.ViagemSelecionada == null || Sessao.AssentosSelecionados == null)
             {
-                MessageBox.Show("Dados da sessão não encontrados. Você será redirecionado para a tela inicial.",
+                MessageBox.Show("Dados da sessão não encontrados. Você será redirecionado.",
                                 "Erro de Sessão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                VoltarParaHome();
+
+                this.DialogResult = DialogResult.Abort; // Sinaliza que o fluxo quebrou por falta de dados
+                this.Close();
                 return;
             }
 
-            // 1. Preenche os dados textuais da viagem
+            // 1. Vinculação dos dados descritivos da viagem ativa
             lblOrigem.Text = Sessao.ViagemSelecionada.NmOrigem;
             lblDestino.Text = Sessao.ViagemSelecionada.NmDestino;
             lblData.Text = Sessao.ViagemSelecionada.DtViagem.ToString("dd/MM/yyyy HH:mm");
 
-            // 2. Mapeia e junta os assentos escolhidos dinamicamente
+            // 2. Mapeamento e agregação dos assentos escolhidos
             if (Sessao.AssentosSelecionados.Count == 0)
             {
                 lblAssentos.Text = "Nenhum assento selecionado";
                 lblTotal.Text = "R$ 0,00";
-                btnConfirmar.Enabled = false; // Bloqueia o botão se não houver o que pagar
+                btnConfirmar.Enabled = false; // Trava de segurança contra requisições vazias
                 return;
             }
 
@@ -50,13 +63,15 @@ namespace Nexo_App.UI
             }
             lblAssentos.Text = string.Join(", ", nums);
 
-            // 3. CALCULO DINÂMICO DO PREÇO
+            // CÁLCULO FINANCEIRO DINÂMICO
             decimal total = Sessao.ViagemSelecionada.VlPreco * Sessao.AssentosSelecionados.Count;
-
-            // O formato "C2" coloca automaticamente o símbolo da moeda local (R$) e formata as casas decimais corretamente
             lblTotal.Text = total.ToString("C2");
         }
 
+        /// <summary>
+        /// Processa a confirmação final da reserva do bilhete, enviando as referências do usuário,
+        /// da viagem e das poltronas para a camada de persistência.
+        /// </summary>
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
@@ -71,7 +86,10 @@ namespace Nexo_App.UI
                 MessageBox.Show("Reserva confirmada com sucesso!\nObrigado por escolher nosso sistema.",
                     "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                VoltarParaHome();
+                // ARQUITETURA CENTRALIZADA: Sinaliza sucesso e fecha. 
+                // As telas anteriores saberão que a compra foi concluída e limparão o cache de forma ordenada.
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -80,24 +98,19 @@ namespace Nexo_App.UI
             }
         }
 
+        /// <summary>
+        /// Interrompe o fluxo de confirmação e retorna o usuário ao mapa de assentos, preservando o estado das escolhas.
+        /// </summary>
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            var formAssentos = new FormAssentos();
-            formAssentos.Show();
-            this.Dispose(); // Libera os recursos da tela atual da memória de forma limpa
+            // ARQUITETURA CENTRALIZADA: Define Cancel e fecha. O FormAssentos vai reaparecer sozinho.
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
-        private void VoltarParaHome()
-        {
-            // Limpa a seleção da sessão antes de sair
-            if (Sessao.AssentosSelecionados != null) Sessao.AssentosSelecionados.Clear();
-            Sessao.ViagemSelecionada = null;
-
-            var formHome = new FormHome();
-            formHome.Show();
-            this.Dispose();
-        }
-
+        /// <summary>
+        /// Modifica a geometria de renderização nativa de um controle do Windows Forms.
+        /// </summary>
         private void AplicarBordaArredondada(Control ctrl, int raio)
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
